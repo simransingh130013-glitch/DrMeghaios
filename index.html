@@ -1,0 +1,4300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dental Clinic Management</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#eef3fc;
+    --bg-soft:#f5f7fd;
+
+    --blue:#2857e8;
+    --blue-dark:#173a9e;
+    --blue-light:#dfe8ff;
+
+    --navy:#14213d;
+    --text:#1d2942;
+    --muted:#7d879b;
+
+    --white:#ffffff;
+
+    --border:#e7ebf4;
+
+    --green:#31b98f;
+    --orange:#f59a5a;
+
+    --shadow:
+        0 12px 35px
+        rgba(34,55,100,.08);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body{
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edf2fb,
+            #f7f8fc
+        );
+
+    color:var(--text);
+
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+
+    min-height:100vh;
+
+    display:flex;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:245px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    border-right:
+        1px solid
+        var(--border);
+
+    padding:30px 18px;
+
+    z-index:100;
+}
+
+
+/* =========================================================
+   SIMPLE BRAND
+   FULL NAME ONLY ONCE
+========================================================= */
+
+.doctor-brand{
+
+    text-align:center;
+
+    padding:
+        8px 5px 28px;
+
+    margin-bottom:27px;
+
+    border-bottom:
+        1px solid
+        #edf0f6;
+}
+
+.doctor-name{
+
+    font-size:15px;
+
+    font-weight:500;
+
+    color:#222b3c;
+
+    letter-spacing:.2px;
+}
+
+.doctor-speciality{
+
+    margin-top:3px;
+
+    font-size:11px;
+
+    color:#778196;
+}
+
+
+/* =========================================================
+   NAVIGATION TITLE
+========================================================= */
+
+.nav-title{
+
+    padding:
+        0 13px 10px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    color:#a0a8b8;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-item{
+
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#647086;
+
+    padding:
+        12px 14px;
+
+    margin-bottom:5px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+.nav-item:hover{
+
+    background:#f0f4ff;
+
+    color:var(--blue);
+}
+
+.nav-item.active{
+
+    background:
+        #e6edff;
+
+    color:
+        var(--blue);
+
+    font-weight:600;
+}
+
+.nav-icon{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    margin-left:245px;
+
+    width:
+        calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:
+        30px 38px 40px;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.greeting h1{
+
+    font-size:29px;
+
+    line-height:1;
+
+    letter-spacing:-1px;
+
+    color:var(--navy);
+
+    font-weight:700;
+}
+
+.greeting p{
+
+    margin-top:8px;
+
+    font-size:12px;
+
+    color:var(--muted);
+}
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
+
+.icon-button{
+
+    width:42px;
+    height:42px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(34,55,100,.05);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile{
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:
+        5px 12px 5px 7px;
+
+    background:white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:14px;
+}
+
+.profile-avatar{
+
+    width:34px;
+    height:34px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        #e3eaff;
+
+    color:
+        var(--blue);
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+.profile-name{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.profile-role{
+
+    margin-top:2px;
+
+    font-size:9px;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:165px;
+
+    padding:
+        29px 32px;
+
+    margin-bottom:22px;
+
+    border-radius:27px;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #dce7ff 0%,
+            #eef3ff 55%,
+            #d9e6ff 100%
+        );
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(45,79,155,.07);
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    right:-70px;
+    top:-160px;
+
+    background:
+        rgba(255,255,255,.7);
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    right:180px;
+    bottom:-130px;
+
+    background:
+        rgba(255,255,255,.45);
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:3;
+
+    max-width:650px;
+}
+
+.hero h2{
+
+    font-size:25px;
+
+    color:var(--navy);
+
+    letter-spacing:-.5px;
+
+    margin-bottom:8px;
+}
+
+.hero p{
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    color:#66738d;
+}
+
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero-button{
+
+    position:relative;
+
+    z-index:3;
+
+    border:none;
+
+    background:
+        var(--blue);
+
+    color:white;
+
+    padding:
+        13px 20px;
+
+    border-radius:14px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 9px 20px
+        rgba(40,87,232,.22);
+}
+
+.hero-button:hover{
+
+    background:
+        var(--blue-dark);
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:20px;
+}
+
+.filter{
+
+    border:none;
+
+    background:white;
+
+    color:#78849a;
+
+    padding:
+        8px 16px;
+
+    border-radius:30px;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    border:
+        1px solid
+        #e8ebf2;
+
+    transition:.2s;
+}
+
+.filter:hover{
+
+    color:var(--blue);
+
+    background:#f2f5ff;
+}
+
+.filter.active{
+
+    background:
+        var(--navy);
+
+    color:white;
+
+    border-color:
+        var(--navy);
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:22px;
+}
+
+.stat-card{
+
+    min-height:132px;
+
+    padding:18px;
+
+    background:white;
+
+    border-radius:21px;
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.stat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.stat-title{
+
+    font-size:10px;
+
+    color:#7b879b;
+}
+
+.stat-icon{
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:#e9efff;
+
+    font-size:17px;
+}
+
+.stat-card:nth-child(2)
+.stat-icon{
+
+    background:#e8f7f2;
+}
+
+.stat-card:nth-child(3)
+.stat-icon{
+
+    background:#f0eaff;
+}
+
+.stat-card:nth-child(4)
+.stat-icon{
+
+    background:#fff1e7;
+}
+
+.stat-number{
+
+    margin-top:14px;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    color:var(--navy);
+}
+
+.stat-description{
+
+    margin-top:3px;
+
+    font-size:9px;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   LOWER GRID
+========================================================= */
+
+.lower-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1.45fr 1fr;
+
+    gap:20px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+
+    background:white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:23px;
+
+    padding:21px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+}
+
+.card-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.view-all{
+
+    border:none;
+
+    background:none;
+
+    color:var(--blue);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   APPOINTMENTS
+========================================================= */
+
+.appointment{
+
+    min-height:65px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    border-bottom:
+        1px solid
+        #edf0f5;
+}
+
+.appointment:last-child{
+
+    border-bottom:none;
+}
+
+.appointment-time{
+
+    width:67px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.patient-avatar{
+
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#e9efff;
+
+    color:var(--blue);
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.patient-info{
+
+    flex:1;
+}
+
+.patient-name{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.patient-treatment{
+
+    margin-top:3px;
+
+    font-size:9px;
+
+    color:var(--muted);
+}
+
+.status{
+
+    padding:
+        6px 10px;
+
+    border-radius:20px;
+
+    font-size:8px;
+
+    font-weight:700;
+}
+
+.status.scheduled{
+
+    background:#e7f8f2;
+
+    color:#20a17e;
+}
+
+.status.inchair{
+
+    background:#fff0e5;
+
+    color:#df8145;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:11px;
+}
+
+.quick-card{
+
+    min-height:108px;
+
+    padding:15px;
+
+    border:
+        1px solid
+        #e6ebf3;
+
+    border-radius:17px;
+
+    background:
+        #fbfcff;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+.quick-card:hover{
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #cfdaff;
+
+    box-shadow:
+        0 8px 22px
+        rgba(40,87,232,.08);
+}
+
+.quick-icon{
+
+    width:35px;
+    height:35px;
+
+    border-radius:11px;
+
+    background:#e9efff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    margin-bottom:9px;
+}
+
+.quick-title{
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.quick-text{
+
+    display:block;
+
+    margin-top:3px;
+
+    font-size:8px;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   PRACTICE HEALTH
+========================================================= */
+
+.health{
+
+    margin-top:20px;
+
+    padding-top:17px;
+
+    border-top:
+        1px solid
+        #edf0f5;
+}
+
+.health-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+}
+
+.health-title{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:var(--navy);
+}
+
+.health-value{
+
+    font-size:10px;
+
+    font-weight:700;
+
+    color:var(--blue);
+}
+
+.progress{
+
+    height:7px;
+
+    background:#edf1f8;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    width:86%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2857e8,
+            #7190ff
+        );
+}
+
+.health-text{
+
+    margin-top:7px;
+
+    font-size:8px;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+.mobile-bottom-nav{
+
+    display:none;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+
+    display:none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1050px){
+
+    .stats{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .lower-grid{
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    body{
+
+        padding-bottom:75px;
+    }
+
+    .sidebar{
+
+        transform:
+            translateX(-100%);
+
+        transition:.25s;
+
+        box-shadow:
+            10px 0 35px
+            rgba(20,33,61,.1);
+    }
+
+    .sidebar.open{
+
+        transform:
+            translateX(0);
+    }
+
+    .main{
+
+        width:100%;
+
+        margin-left:0;
+
+        padding:
+            20px 16px 25px;
+    }
+
+    .mobile-menu{
+
+        display:block;
+    }
+
+    .profile{
+
+        display:none;
+    }
+
+    .topbar{
+
+        margin-bottom:20px;
+    }
+
+    .greeting h1{
+
+        font-size:25px;
+    }
+
+    .greeting p{
+
+        font-size:10px;
+    }
+
+    .hero{
+
+        min-height:180px;
+
+        padding:23px;
+
+        align-items:flex-end;
+    }
+
+    .hero h2{
+
+        font-size:21px;
+    }
+
+    .hero p{
+
+        font-size:10px;
+
+        max-width:90%;
+    }
+
+    .hero-button{
+
+        display:none;
+    }
+
+    .filters{
+
+        overflow-x:auto;
+
+        padding-bottom:3px;
+
+        scrollbar-width:none;
+    }
+
+    .filters::-webkit-scrollbar{
+
+        display:none;
+    }
+
+    .filter{
+
+        white-space:nowrap;
+    }
+
+    .stats{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:10px;
+    }
+
+    .stat-card{
+
+        min-height:125px;
+
+        padding:15px;
+    }
+
+    .stat-number{
+
+        font-size:22px;
+    }
+
+    .lower-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .status{
+
+        display:none;
+    }
+
+    .mobile-bottom-nav{
+
+        display:flex;
+
+        position:fixed;
+
+        left:12px;
+        right:12px;
+        bottom:12px;
+
+        height:62px;
+
+        background:
+            rgba(20,33,61,.97);
+
+        border-radius:22px;
+
+        z-index:200;
+
+        justify-content:
+            space-around;
+
+        align-items:center;
+
+        box-shadow:
+            0 12px 35px
+            rgba(20,33,61,.2);
+    }
+
+    .bottom-item{
+
+        width:50px;
+        height:50px;
+
+        border:none;
+
+        background:transparent;
+
+        color:#aab5cf;
+
+        border-radius:16px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        justify-content:center;
+
+        gap:2px;
+
+        cursor:pointer;
+    }
+
+    .bottom-item.active{
+
+        background:
+            var(--blue);
+
+        color:white;
+    }
+
+    .bottom-icon{
+
+        font-size:17px;
+    }
+
+    .bottom-text{
+
+        font-size:7px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:430px){
+
+    .stats{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .quick-actions{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .quick-card{
+
+        min-height:100px;
+    }
+}
+
+
+/* =========================================================
+   PATIENTS MODULE
+========================================================= */
+.page{display:block}
+.page.hidden{display:none}
+
+.patients-page{animation:pageIn .18s ease}
+@keyframes pageIn{
+    from{opacity:0;transform:translateY(4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.module-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:20px;
+}
+.module-title h2{
+    font-size:25px;
+    color:var(--navy);
+    letter-spacing:-.5px;
+}
+.module-title p{
+    margin-top:6px;
+    font-size:11px;
+    color:var(--muted);
+}
+.primary-button{
+    border:none;
+    background:var(--blue);
+    color:#fff;
+    padding:12px 17px;
+    border-radius:13px;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(40,87,232,.18);
+}
+.primary-button:hover{background:var(--blue-dark)}
+
+.patient-toolbar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+.search-box{
+    flex:1;
+    position:relative;
+}
+.search-box span{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:14px;
+}
+.search-box input{
+    width:100%;
+    height:45px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#fff;
+    padding:0 15px 0 39px;
+    outline:none;
+    color:var(--text);
+    font-size:11px;
+    box-shadow:0 5px 18px rgba(34,55,100,.04);
+}
+.search-box input:focus{border-color:#b9c9ff}
+.patient-count{
+    white-space:nowrap;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px 15px;
+    font-size:10px;
+    color:var(--muted);
+}
+.patient-count strong{color:var(--navy)}
+
+.patient-table-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+}
+.patient-table-wrap{overflow-x:auto}
+.patient-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+.patient-table th{
+    text-align:left;
+    padding:14px 16px;
+    background:#fafbfe;
+    color:#8993a7;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+    font-weight:700;
+    border-bottom:1px solid #edf0f5;
+}
+.patient-table td{
+    padding:14px 16px;
+    border-bottom:1px solid #edf0f5;
+    font-size:10px;
+    color:var(--text);
+    vertical-align:middle;
+}
+.patient-table tr:last-child td{border-bottom:none}
+.patient-table tbody tr:hover{background:#fbfcff}
+.patient-main{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.patient-row-avatar{
+    width:36px;height:36px;
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:#e9efff;
+    color:var(--blue);
+    font-size:9px;font-weight:800;
+    flex-shrink:0;
+}
+.patient-row-name{font-weight:700;color:var(--navy);font-size:10px}
+.patient-row-id{font-size:8px;color:var(--muted);margin-top:3px}
+.patient-treatment{color:#647086}
+.patient-status{
+    display:inline-flex;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e7f8f2;
+    color:#20a17e;
+    font-size:8px;
+    font-weight:700;
+}
+.row-actions{display:flex;gap:6px}
+.small-btn{
+    border:1px solid #e5e9f2;
+    background:#fff;
+    color:#637087;
+    border-radius:9px;
+    padding:7px 9px;
+    font-size:9px;
+    cursor:pointer;
+}
+.small-btn:hover{background:#f1f5ff;color:var(--blue)}
+.small-btn.delete:hover{background:#fff0f0;color:#d94b4b}
+.empty-state{
+    padding:55px 20px;
+    text-align:center;
+    color:var(--muted);
+}
+.empty-icon{font-size:28px;margin-bottom:10px}
+.empty-state strong{display:block;color:var(--navy);font-size:13px;margin-bottom:5px}
+.empty-state span{font-size:10px}
+
+.modal-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(20,33,61,.38);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:500;
+}
+.modal-backdrop.show{display:flex}
+.modal{
+    width:min(680px,100%);
+    max-height:92vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:24px;
+    box-shadow:0 25px 80px rgba(20,33,61,.22);
+    padding:24px;
+}
+.modal-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+}
+.modal-header h3{font-size:18px;color:var(--navy)}
+.modal-header p{font-size:9px;color:var(--muted);margin-top:4px}
+.close-button{
+    width:34px;height:34px;
+    border:none;border-radius:11px;
+    background:#f3f5fa;color:#69758b;
+    cursor:pointer;font-size:16px;
+}
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{
+    font-size:9px;font-weight:700;color:#69758b;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid #e2e7f0;
+    border-radius:11px;
+    background:#fbfcff;
+    padding:10px 11px;
+    outline:none;
+    color:var(--text);
+    font-family:inherit;
+    font-size:10px;
+}
+.form-group textarea{min-height:76px;resize:vertical}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:#b9c9ff;background:#fff}
+.form-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:9px;
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid #edf0f5;
+}
+.secondary-button{
+    border:1px solid #e2e7f0;
+    background:#fff;
+    color:#657188;
+    padding:11px 16px;
+    border-radius:12px;
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+.secondary-button:hover{background:#f7f9fc}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.detail-item{
+    padding:12px;
+    border:1px solid #edf0f5;
+    background:#fafbfe;
+    border-radius:13px;
+}
+.detail-item.full{grid-column:1/-1}
+.detail-label{
+    font-size:8px;
+    color:#8993a7;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    font-weight:700;
+}
+.detail-value{
+    margin-top:5px;
+    font-size:10px;
+    color:var(--navy);
+    line-height:1.5;
+    white-space:pre-wrap;
+}
+.detail-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px;
+    background:#f2f5ff;
+    border-radius:16px;
+    margin-bottom:14px;
+}
+.detail-avatar{
+    width:48px;height:48px;border-radius:15px;
+    display:flex;align-items:center;justify-content:center;
+    background:#dce6ff;color:var(--blue);
+    font-size:12px;font-weight:800;
+}
+.detail-profile h4{font-size:14px;color:var(--navy)}
+.detail-profile p{font-size:9px;color:var(--muted);margin-top:3px}
+
+@media(max-width:700px){
+    .module-head{align-items:flex-start}
+    .module-title h2{font-size:22px}
+    .primary-button{padding:11px 13px}
+    .patient-toolbar{flex-direction:column;align-items:stretch}
+    .patient-count{text-align:center}
+    .modal{padding:19px;border-radius:20px}
+    .form-grid,.detail-grid{grid-template-columns:1fr}
+    .form-group.full,.detail-item.full{grid-column:auto}
+}
+
+
+/* APPOINTMENTS MODULE */
+.appointment-page{animation:pageIn .18s ease}
+.appointment-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.appt-mini{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px;box-shadow:var(--shadow)}
+.appt-mini-label{font-size:9px;color:var(--muted)}
+.appt-mini-number{font-size:22px;font-weight:800;color:var(--navy);margin-top:8px}
+.appt-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.appt-date,.appt-filter{height:45px;border:1px solid var(--border);border-radius:14px;background:#fff;padding:0 12px;outline:none;color:var(--text);font-size:10px}
+.appt-list{display:grid;gap:11px}
+.appt-card{background:#fff;border:1px solid var(--border);border-radius:19px;padding:15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
+.appt-time-box{width:82px;flex-shrink:0;text-align:center;padding:10px 7px;border-radius:14px;background:#eef3ff}
+.appt-time{font-size:12px;font-weight:800;color:var(--navy)}
+.appt-date-small{font-size:8px;color:var(--muted);margin-top:4px}
+.appt-person{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.appt-avatar{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#e9efff;color:var(--blue);font-size:10px;font-weight:800;flex-shrink:0}
+.appt-patient-name{font-size:11px;font-weight:800;color:var(--navy)}
+.appt-info{font-size:9px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.appt-actions{display:flex;gap:6px;align-items:center}
+.appt-status{padding:6px 10px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
+.appt-status.scheduled{background:#e7f8f2;color:#20a17e}.appt-status.inchair{background:#fff0e5;color:#df8145}.appt-status.completed{background:#e7edff;color:#3156d8}.appt-status.cancelled{background:#ffecec;color:#d94b4b}
+.appt-empty{background:#fff;border:1px solid var(--border);border-radius:20px;padding:55px 20px;text-align:center;box-shadow:var(--shadow)}
+.appt-empty-icon{font-size:28px;margin-bottom:9px}.appt-empty strong{display:block;font-size:13px;color:var(--navy)}.appt-empty span{display:block;font-size:10px;color:var(--muted);margin-top:5px}
+@media(max-width:900px){.appointment-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.appointment-summary{grid-template-columns:1fr 1fr}.appt-card{align-items:flex-start;flex-wrap:wrap}.appt-person{min-width:calc(100% - 96px)}.appt-actions{width:100%;justify-content:flex-end}.appt-status{margin-right:auto}.appt-toolbar>*{flex:1}.appt-toolbar .search-box{flex-basis:100%}}
+
+
+<style>
+/* ================= TREATMENT MODULE ================= */
+.treatment-page{padding-bottom:30px}
+.treatment-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.treat-mini{background:#fff;border:1px solid var(--border);border-radius:19px;padding:17px;box-shadow:var(--shadow)}
+.treat-mini-label{font-size:10px;color:#7b879b}.treat-mini-number{font-size:25px;font-weight:800;color:var(--navy);margin-top:8px}
+.treatment-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.treatment-toolbar .search-box{flex:1;min-width:220px}
+.treatment-filter{height:43px;border:1px solid var(--border);border-radius:13px;background:#fff;padding:0 13px;color:var(--text);font-size:11px;outline:none}
+.treatment-list{display:grid;gap:12px}
+.treatment-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:17px 18px;box-shadow:var(--shadow)}
+.treatment-card-top{display:flex;align-items:center;gap:13px}.treatment-avatar{width:43px;height:43px;border-radius:14px;background:#e9efff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
+.treatment-patient{flex:1}.treatment-patient strong{display:block;font-size:13px;color:var(--navy)}.treatment-patient small{display:block;margin-top:3px;color:var(--muted);font-size:9px}
+.treatment-status{padding:6px 10px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}.treatment-status.planned{background:#eef2ff;color:#4d65c8}.treatment-status.inprogress{background:#e7f8f2;color:#1d9d78}.treatment-status.completed{background:#e9efff;color:#2857e8}.treatment-status.onhold{background:#fff0e5;color:#df8145}
+.treatment-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #edf0f5}.treat-meta-item span{display:block;font-size:8px;color:#9aa3b3;text-transform:uppercase;letter-spacing:.5px}.treat-meta-item strong{display:block;margin-top:4px;font-size:10px;color:var(--navy);font-weight:700}
+.treatment-notes{margin-top:12px;padding:10px 12px;background:#f8faff;border-radius:12px;font-size:9px;line-height:1.5;color:#69758a}.treatment-actions{display:flex;gap:7px;margin-top:12px;justify-content:flex-end}.treatment-action{border:1px solid #e4e9f2;background:#fff;color:#647086;border-radius:10px;padding:7px 10px;font-size:9px;cursor:pointer}.treatment-action:hover{color:var(--blue);border-color:#cdd8ff;background:#f7f9ff}.treatment-empty{text-align:center;padding:42px 20px;background:#fff;border:1px dashed #d9dfeb;border-radius:20px;color:#8993a5}.treatment-empty strong{display:block;color:var(--navy);font-size:13px;margin-bottom:5px}.treatment-empty span{font-size:10px}
+.treatment-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.treatment-detail-item{background:#f8faff;border-radius:13px;padding:11px}.treatment-detail-label{font-size:8px;color:#919bad;text-transform:uppercase;letter-spacing:.5px}.treatment-detail-value{font-size:11px;color:var(--navy);font-weight:700;margin-top:4px;white-space:pre-wrap}.treatment-detail-full{grid-column:1/-1}
+@media(max-width:900px){.treatment-summary{grid-template-columns:repeat(2,1fr)}.treatment-meta{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.treatment-summary{grid-template-columns:1fr 1fr}.treatment-toolbar{display:grid;grid-template-columns:1fr 1fr}.treatment-toolbar .search-box{grid-column:1/-1}.treatment-filter{width:100%}.treatment-card{padding:14px}.treatment-card-top{align-items:flex-start}.treatment-status{font-size:7px}.treatment-meta{grid-template-columns:1fr 1fr}.treatment-detail-grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   BILLING MODULE
+========================================================= */
+.billing-page{padding-bottom:30px;min-width:0}
+@media(max-width:700px){.billing-page{padding-bottom:90px}}.billing-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.bill-mini{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:var(--shadow)}.bill-mini-label{font-size:10px;color:#7b879b}.bill-mini-number{margin-top:9px;font-size:24px;font-weight:800;color:var(--navy)}.bill-mini-sub{margin-top:3px;font-size:9px;color:var(--muted)}.billing-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}.billing-toolbar .search-box{flex:1;min-width:240px}.bill-filter,.bill-date{height:40px;border:1px solid #e4e9f2;background:#fff;border-radius:12px;padding:0 12px;color:var(--text);font-size:11px;outline:none}.bill-list{display:flex;flex-direction:column;gap:10px}.bill-row{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 25px rgba(34,55,100,.05)}.bill-avatar{width:42px;height:42px;border-radius:14px;background:#e8eeff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}.bill-main{flex:1;min-width:0}.bill-name{font-size:12px;font-weight:800;color:var(--navy)}.bill-meta{margin-top:4px;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bill-amounts{display:flex;gap:20px;align-items:center}.bill-money{text-align:right}.bill-money label{display:block;font-size:8px;color:#8a94a7;text-transform:uppercase;letter-spacing:.5px}.bill-money strong{display:block;margin-top:3px;font-size:12px;color:var(--navy)}.bill-status{padding:6px 10px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}.bill-status.paid{background:#e7f8f2;color:#20a17e}.bill-status.partial{background:#fff2e5;color:#d98243}.bill-status.pending{background:#ffe9ec;color:#d64b5c}.bill-actions{display:flex;gap:6px}.bill-action{border:1px solid #e4e9f2;background:#fff;border-radius:10px;padding:7px 9px;font-size:10px;cursor:pointer;color:#647086}.bill-action:hover{background:#f2f5ff;color:var(--blue)}.billing-empty{padding:45px 20px;text-align:center;background:#fff;border:1px dashed #dfe5f0;border-radius:18px;color:var(--muted);font-size:11px}.billing-empty strong{display:block;color:var(--navy);font-size:14px;margin-bottom:5px}.invoice-total-box{margin-top:15px;background:#f5f7fd;border-radius:15px;padding:14px}.invoice-line{display:flex;justify-content:space-between;padding:5px 0;font-size:11px;color:#657189}.invoice-line.total{border-top:1px solid #e2e7f0;margin-top:7px;padding-top:10px;font-size:14px;font-weight:800;color:var(--navy)}.bill-detail-head{display:flex;justify-content:space-between;align-items:center;background:#f1f5ff;border-radius:16px;padding:16px;margin-bottom:14px}.bill-detail-head h4{font-size:15px;color:var(--navy)}.bill-detail-head p{margin-top:3px;font-size:9px;color:var(--muted)}.bill-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bill-detail-item{background:#f8faff;border-radius:13px;padding:11px}.bill-detail-item.full{grid-column:1/-1}.bill-detail-label{font-size:8px;color:#8590a5;text-transform:uppercase;letter-spacing:.5px}.bill-detail-value{margin-top:4px;font-size:11px;font-weight:700;color:var(--navy)}
+@media(max-width:900px){.billing-summary{grid-template-columns:repeat(2,1fr)}.bill-row{align-items:flex-start;flex-wrap:wrap}.bill-amounts{width:100%;justify-content:space-between}.bill-actions{margin-left:auto}}
+@media(max-width:600px){.billing-summary{grid-template-columns:1fr 1fr}.billing-toolbar{align-items:stretch}.billing-toolbar .search-box{min-width:100%}.bill-filter,.bill-date{flex:1;min-width:0}.bill-row{padding:13px}.bill-amounts{gap:10px;flex-wrap:wrap}.bill-money{text-align:left}.bill-detail-grid{grid-template-columns:1fr}.bill-detail-item.full{grid-column:auto}}
+
+
+/* =========================================================
+   REPORTS MODULE
+========================================================= */
+.reports-page{padding-bottom:30px}
+.report-controls{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.report-control{background:#fff;border:1px solid var(--border);border-radius:13px;padding:10px 12px;color:var(--text);font-size:11px;min-height:40px;outline:none}
+.report-control:focus{border-color:#b9c9ff;box-shadow:0 0 0 3px rgba(40,87,232,.08)}
+.report-actions{display:flex;gap:8px;margin-left:auto}
+.report-button{border:1px solid #e1e7f2;background:#fff;color:var(--navy);padding:10px 14px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer}
+.report-button.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.report-button:hover{transform:translateY(-1px)}
+.report-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.report-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.report-card-label{font-size:10px;color:#7b879b}.report-card-number{font-size:25px;font-weight:800;color:var(--navy);margin-top:9px}.report-card-sub{font-size:9px;color:var(--muted);margin-top:3px}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.report-section{background:#fff;border:1px solid var(--border);border-radius:21px;padding:20px;box-shadow:var(--shadow)}
+.report-section h3{font-size:14px;color:var(--navy);margin-bottom:14px}.report-section p{font-size:10px;color:var(--muted)}
+.report-stat-row{display:flex;align-items:center;gap:10px;margin:12px 0}.report-stat-name{width:105px;font-size:10px;color:#65718a}.report-bar{flex:1;height:8px;background:#edf1f8;border-radius:20px;overflow:hidden}.report-bar-fill{height:100%;background:linear-gradient(90deg,#2857e8,#7190ff);border-radius:20px}.report-stat-value{width:45px;text-align:right;font-size:10px;font-weight:700;color:var(--navy)}
+.report-table{width:100%;border-collapse:collapse}.report-table th{font-size:9px;color:#8a94a7;text-align:left;font-weight:700;padding:9px 6px;border-bottom:1px solid #edf0f5}.report-table td{font-size:10px;color:var(--text);padding:10px 6px;border-bottom:1px solid #f0f2f6}.report-table tr:last-child td{border-bottom:none}.report-money{font-weight:800;color:var(--navy)}
+.report-empty{text-align:center;padding:22px;color:var(--muted);font-size:10px}.report-note{font-size:9px;color:var(--muted);margin-top:12px}
+.report-period{font-size:10px;color:#6e7a91;background:#f3f6ff;padding:7px 10px;border-radius:20px;display:inline-flex;margin-bottom:14px}
+@media(max-width:1050px){.report-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.report-controls{align-items:stretch;flex-direction:column}.report-control,.report-actions{width:100%}.report-actions{margin-left:0}.report-button{flex:1}.report-summary{grid-template-columns:1fr 1fr}.report-grid{grid-template-columns:1fr}.report-stat-name{width:90px}}
+
+\n@media print{body{background:#fff}.sidebar,.topbar,.mobile-bottom-nav,.report-controls{display:none!important}.main{margin:0!important;width:100%!important;padding:0!important}.reports-page{display:block!important}.report-section,.report-card{box-shadow:none}.report-actions{display:none!important}}\n</style>
+</style>
+
+
+<style>
+/* ================= RECORDS & X-RAY MODULE ================= */
+.records-page{padding-bottom:30px}
+.records-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.record-mini{background:#fff;border:1px solid var(--border);border-radius:19px;padding:17px;box-shadow:var(--shadow)}
+.record-mini-label{font-size:10px;color:#7b879b}.record-mini-number{font-size:25px;font-weight:800;color:var(--navy);margin-top:8px}
+.records-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.records-toolbar .search-box{flex:1;min-width:230px}
+.record-filter{height:43px;border:1px solid var(--border);border-radius:13px;background:#fff;padding:0 13px;color:var(--text);font-size:11px;outline:none}
+.record-list{display:grid;gap:12px}
+.record-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:17px 18px;box-shadow:var(--shadow)}
+.record-card-top{display:flex;align-items:center;gap:13px}.record-avatar{width:43px;height:43px;border-radius:14px;background:#e9efff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
+.record-patient{flex:1;min-width:0}.record-patient strong{display:block;font-size:13px;color:var(--navy)}.record-patient small{display:block;margin-top:3px;color:var(--muted);font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.record-type{padding:6px 10px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}.record-type.xray{background:#e7f0ff;color:#2857e8}.record-type.clinical{background:#e7f8f2;color:#1d9d78}.record-type.document{background:#f0eaff;color:#7056c8}.record-type.prescription{background:#fff0e5;color:#df8145}.record-type.other{background:#eef1f5;color:#68758a}
+.record-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #edf0f5}.record-meta-item span{display:block;font-size:8px;color:#9aa3b3;text-transform:uppercase;letter-spacing:.5px}.record-meta-item strong{display:block;margin-top:4px;font-size:10px;color:var(--navy);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.record-description{margin-top:12px;padding:10px 12px;background:#f8faff;border-radius:12px;font-size:9px;line-height:1.5;color:#69758a;white-space:pre-wrap}
+.record-actions{display:flex;gap:7px;margin-top:12px;justify-content:flex-end}.record-action{border:1px solid #e4e9f2;background:#fff;color:#647086;border-radius:10px;padding:7px 10px;font-size:9px;cursor:pointer}.record-action:hover{color:var(--blue);border-color:#cdd8ff;background:#f7f9ff}
+.record-empty{text-align:center;padding:42px 20px;background:#fff;border:1px dashed #d9dfeb;border-radius:20px;color:#8993a5}.record-empty strong{display:block;color:var(--navy);font-size:13px;margin-bottom:5px}.record-empty span{font-size:10px}
+.record-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.record-detail-item{background:#f8faff;border-radius:13px;padding:11px}.record-detail-label{font-size:8px;color:#919bad;text-transform:uppercase;letter-spacing:.5px}.record-detail-value{font-size:11px;color:var(--navy);font-weight:700;margin-top:4px;white-space:pre-wrap;word-break:break-word}.record-detail-full{grid-column:1/-1}
+.record-preview{margin-top:15px;border:1px solid #e5eaf3;border-radius:15px;overflow:hidden;background:#f7f9fc;text-align:center}.record-preview img{display:block;width:100%;max-height:430px;object-fit:contain;background:#eef2f8}.record-file-box{padding:20px}.record-file-icon{font-size:34px;margin-bottom:8px}.record-file-name{font-size:11px;font-weight:700;color:var(--navy);word-break:break-word}.record-file-meta{font-size:9px;color:var(--muted);margin-top:4px}.record-open-file{display:inline-block;margin-top:12px;text-decoration:none;border:1px solid #dfe5f0;background:#fff;color:var(--blue);border-radius:10px;padding:8px 12px;font-size:9px;font-weight:700}
+.file-note{font-size:9px;color:var(--muted);line-height:1.45;margin-top:5px}
+@media(max-width:900px){.records-summary{grid-template-columns:repeat(2,1fr)}.record-meta{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.records-summary{grid-template-columns:1fr 1fr}.records-toolbar{display:grid;grid-template-columns:1fr 1fr}.records-toolbar .search-box{grid-column:1/-1}.record-filter{width:100%}.record-card{padding:14px}.record-card-top{align-items:flex-start}.record-type{font-size:7px}.record-meta{grid-template-columns:1fr 1fr}.record-detail-grid{grid-template-columns:1fr}}
+</style>
+
+
+<style>
+/* =========================================================
+   SETTINGS MODULE
+========================================================= */
+.settings-page{max-width:100%;}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.settings-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:var(--shadow);}
+.settings-card.full{grid-column:1/-1;}
+.settings-card h3{font-size:15px;color:var(--navy);margin-bottom:5px;}
+.settings-card>p{font-size:10px;color:var(--muted);margin-bottom:18px;line-height:1.5;}
+.settings-form{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.settings-form .full{grid-column:1/-1;}
+.settings-label{display:block;font-size:9px;font-weight:700;color:#718099;margin:0 0 6px 3px;text-transform:uppercase;letter-spacing:.4px;}
+.settings-input,.settings-select,.settings-textarea{width:100%;border:1px solid #e1e6ef;background:#fbfcff;border-radius:12px;padding:11px 12px;font:inherit;font-size:11px;color:var(--text);outline:none;}
+.settings-input:focus,.settings-select:focus,.settings-textarea:focus{border-color:#b8c8ff;box-shadow:0 0 0 3px rgba(40,87,232,.07);}
+.settings-textarea{min-height:78px;resize:vertical;}
+.settings-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:17px;padding-top:15px;border-top:1px solid #edf0f5;}
+.settings-button{border:1px solid #dfe5ef;background:#fff;color:#52617b;border-radius:12px;padding:10px 15px;font-size:10px;font-weight:700;cursor:pointer;}
+.settings-button:hover{background:#f5f7fd;}
+.settings-button.primary{border-color:var(--blue);background:var(--blue);color:#fff;box-shadow:0 8px 18px rgba(40,87,232,.18);}
+.settings-button.danger{color:#c94b55;border-color:#f0cfd2;background:#fff8f8;}
+.settings-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:1px solid #edf0f5;}
+.settings-row:last-child{border-bottom:none;padding-bottom:0;}
+.settings-row strong{display:block;font-size:11px;color:var(--navy);}
+.settings-row span{display:block;margin-top:3px;font-size:9px;color:var(--muted);line-height:1.45;}
+.switch{position:relative;width:42px;height:23px;flex:0 0 auto;}
+.switch input{opacity:0;width:0;height:0;}
+.switch-slider{position:absolute;inset:0;background:#d9dfeb;border-radius:20px;cursor:pointer;transition:.2s;}
+.switch-slider:before{content:"";position:absolute;width:17px;height:17px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 2px 5px rgba(20,33,61,.15);transition:.2s;}
+.switch input:checked+.switch-slider{background:var(--blue);}
+.switch input:checked+.switch-slider:before{transform:translateX(19px);}
+.data-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:3px;}
+.settings-note{margin-top:12px;padding:11px 12px;border-radius:12px;background:#f5f8ff;color:#687691;font-size:9px;line-height:1.5;}
+.settings-status{font-size:9px;color:#20a17e;font-weight:700;margin-left:auto;}
+@media(max-width:850px){.settings-grid{grid-template-columns:1fr}.settings-card.full{grid-column:auto;}}
+@media(max-width:700px){.settings-form{grid-template-columns:1fr}.settings-form .full{grid-column:auto}.data-actions{grid-template-columns:1fr}.settings-card{padding:17px}}
+@media print{.settings-page{display:none!important}}
+</style>
+
+<style>
+
+/* =========================================================
+   MIDNIGHT GLOW THEME — visual override only
+   Keeps the existing app functionality and layout intact.
+========================================================= */
+:root{
+  --bg:#001F3F;
+  --bg-soft:#062B46;
+  --blue:#00BFFF;
+  --blue-dark:#008C8C;
+  --blue-light:rgba(0,191,255,.16);
+  --navy:#EAF8FF;
+  --text:#D9F3FF;
+  --muted:#8FB7C9;
+  --white:#FFFFFF;
+  --border:rgba(0,191,255,.22);
+  --green:#00E5C3;
+  --orange:#FFC857;
+  --shadow:0 14px 40px rgba(0,0,0,.28);
+}
+
+html,body{background:#001F3F !important;color:var(--text) !important;}
+body{
+  font-family:"Montserrat",Arial,sans-serif !important;
+  background:
+    radial-gradient(circle at 78% 15%,rgba(0,191,255,.18),transparent 28%),
+    radial-gradient(circle at 20% 85%,rgba(0,140,140,.16),transparent 30%),
+    linear-gradient(135deg,#001326 0%,#001F3F 48%,#002A4A 100%) !important;
+}
+
+.sidebar{
+  background:linear-gradient(180deg,rgba(0,20,42,.98),rgba(0,31,63,.97)) !important;
+  border-right:1px solid rgba(0,191,255,.28) !important;
+  box-shadow:8px 0 35px rgba(0,0,0,.25);
+}
+.doctor-brand{border-bottom-color:rgba(0,191,255,.18) !important;}
+.doctor-name{color:#FFFFFF !important;}
+.doctor-speciality{color:#00BFFF !important;letter-spacing:2px;}
+.nav-title{color:#5F8CA2 !important;}
+.nav-item{color:#9BC9DC !important;}
+.nav-item:hover{background:rgba(0,191,255,.10) !important;color:#00BFFF !important;}
+.nav-item.active{
+  background:linear-gradient(90deg,rgba(0,191,255,.22),rgba(0,140,140,.12)) !important;
+  color:#FFFFFF !important;
+  box-shadow:inset 3px 0 0 #00BFFF,0 0 22px rgba(0,191,255,.10);
+}
+
+.main{background:transparent !important;}
+.greeting h1,.hero h2,.card-title,.stat-number,.patient-name,.appointment-time,.quick-title,.module-title,.settings-label,.report-card-number,.report-money{color:#F4FCFF !important;}
+.greeting p,.hero p,.stat-title,.stat-description,.patient-treatment,.profile-role,.quick-text,.settings-note,.report-card-sub,.report-card-label{color:#8FB7C9 !important;}
+
+.topbar .icon-button,.profile{
+  background:rgba(4,38,65,.82) !important;
+  border-color:rgba(0,191,255,.22) !important;
+  color:#DDF8FF !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.22),0 0 18px rgba(0,191,255,.05);
+}
+.profile-avatar{background:rgba(0,191,255,.14) !important;color:#00BFFF !important;}
+.profile-name{color:#F4FCFF !important;}
+
+.hero{
+  background:
+    radial-gradient(circle at 82% 35%,rgba(0,191,255,.28),transparent 25%),
+    linear-gradient(120deg,#002743 0%,#063A52 52%,#004B63 100%) !important;
+  border:1px solid rgba(0,191,255,.30) !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.25),0 0 28px rgba(0,191,255,.08);
+}
+.hero::before{background:rgba(0,191,255,.10) !important;}
+.hero::after{background:rgba(0,140,140,.12) !important;}
+.hero h2{color:#FFFFFF !important;}
+.hero p{color:#B8DFEC !important;}
+.hero-button,.primary-button,.settings-button.primary,.report-button.primary{
+  background:linear-gradient(135deg,#008C8C,#00BFFF) !important;
+  color:#FFFFFF !important;
+  border-color:transparent !important;
+  box-shadow:0 10px 28px rgba(0,191,255,.22),0 0 18px rgba(0,191,255,.12);
+}
+.hero-button:hover,.primary-button:hover,.settings-button.primary:hover{background:linear-gradient(135deg,#00AFA8,#27D2FF) !important;}
+
+.stat-card,.card,.patient-table-card,.settings-card,.report-card,.report-section{
+  background:linear-gradient(145deg,rgba(5,45,72,.96),rgba(3,32,55,.96)) !important;
+  border-color:rgba(0,191,255,.20) !important;
+  box-shadow:var(--shadow),0 0 22px rgba(0,191,255,.035);
+}
+.stat-icon,.patient-avatar,.quick-icon{
+  background:rgba(0,191,255,.12) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+.stat-card:nth-child(2) .stat-icon{background:rgba(0,140,140,.16) !important;}
+.stat-card:nth-child(3) .stat-icon{background:rgba(0,191,255,.12) !important;}
+.stat-card:nth-child(4) .stat-icon{background:rgba(0,191,255,.10) !important;}
+
+.appointment{border-bottom-color:rgba(0,191,255,.10) !important;}
+.status.scheduled{background:rgba(0,229,195,.13) !important;color:#00E5C3 !important;border:1px solid rgba(0,229,195,.28);}
+.status.inchair{background:rgba(255,200,87,.12) !important;color:#FFD36A !important;border:1px solid rgba(255,200,87,.28);}
+.status.total,.status.completed{background:rgba(0,191,255,.12) !important;color:#54D8FF !important;}
+
+.quick-card{
+  background:rgba(3,39,64,.78) !important;
+  border-color:rgba(0,191,255,.18) !important;
+}
+.quick-card:hover{border-color:rgba(0,191,255,.48) !important;box-shadow:0 10px 28px rgba(0,191,255,.10);}
+
+.filter,.report-control,.settings-input,.settings-select,.settings-textarea,.search-box,.appt-filter,.bill-filter,.record-filter,.treatment-filter{
+  background:rgba(2,31,52,.88) !important;
+  color:#DDF8FF !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.filter{color:#91BDCE !important;}
+.filter:hover{background:rgba(0,191,255,.10) !important;color:#00BFFF !important;}
+.filter.active{background:linear-gradient(135deg,#008C8C,#006E86) !important;color:#FFFFFF !important;border-color:#00BFFF !important;}
+.search-box input,.settings-input,.settings-select,.settings-textarea{color:#EAFBFF !important;}
+.search-box input::placeholder,.settings-input::placeholder,.settings-textarea::placeholder{color:#62899A !important;}
+
+.secondary-button,.report-button,.settings-button{background:rgba(0,191,255,.08) !important;color:#9FE8FF !important;border-color:rgba(0,191,255,.24) !important;}
+.secondary-button:hover,.report-button:hover,.settings-button:hover{background:rgba(0,191,255,.15) !important;color:#FFFFFF !important;}
+
+.module-head,.patient-toolbar,.appt-toolbar,.billing-toolbar,.records-toolbar,.treatment-toolbar,.report-controls,.settings-actions{color:#DDF8FF !important;}
+.form-group label,.settings-label{color:#A8D0DE !important;}
+.form-group input,.form-group select,.form-group textarea{background:#02263F !important;color:#EAFBFF !important;border-color:rgba(0,191,255,.20) !important;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#648D9F !important;}
+
+.table,.patient-table,.report-table{color:#DDF8FF !important;}
+table th{color:#72A7BA !important;border-bottom-color:rgba(0,191,255,.16) !important;}
+table td{border-bottom-color:rgba(0,191,255,.09) !important;color:#D7F1FA !important;}
+
+.modal-backdrop{background:rgba(0,8,20,.78) !important;backdrop-filter:blur(5px);}
+.modal{background:linear-gradient(145deg,#052D49,#021D31) !important;border:1px solid rgba(0,191,255,.28) !important;box-shadow:0 25px 70px rgba(0,0,0,.48),0 0 30px rgba(0,191,255,.08);}
+.modal-header,.modal-footer{border-color:rgba(0,191,255,.14) !important;}
+.modal-header h3,.modal-title{color:#FFFFFF !important;}
+.close-button{background:rgba(0,191,255,.08) !important;color:#A9E8FA !important;border-color:rgba(0,191,255,.18) !important;}
+
+.progress{background:rgba(0,191,255,.10) !important;}
+.progress-bar{background:linear-gradient(90deg,#008C8C,#00BFFF) !important;box-shadow:0 0 12px rgba(0,191,255,.28);}
+.switch-slider{background:#123D52 !important;border-color:rgba(0,191,255,.20) !important;}
+.switch input:checked + .switch-slider{background:linear-gradient(90deg,#008C8C,#00BFFF) !important;}
+
+.invoice-total-box{background:rgba(0,191,255,.08) !important;border-color:rgba(0,191,255,.20) !important;}
+.report-card-number,.report-money{color:#F4FCFF !important;}
+.report-note,.settings-note,.file-note{background:rgba(0,191,255,.06) !important;color:#8FB7C9 !important;border-color:rgba(0,191,255,.12) !important;}
+
+.mobile-bottom-nav{
+  background:rgba(0,20,40,.96) !important;
+  border-top:1px solid rgba(0,191,255,.22) !important;
+  box-shadow:0 -8px 30px rgba(0,0,0,.25);
+}
+.bottom-item{color:#6F9BAD !important;}
+.bottom-item.active{color:#00BFFF !important;}
+
+@media(max-width:800px){
+  .main{background:transparent !important;}
+  .topbar .icon-button,.profile{background:rgba(4,38,65,.88) !important;}
+}
+
+</style>
+
+<style id="midnight-module-contrast-fix">
+/* =========================================================
+   MIDNIGHT GLOW — MODULE CONTRAST & CONSISTENCY FIX
+   Applies the reference dark-card treatment across:
+   Patients / Appointments / Treatment / Records & X-Ray / Billing
+========================================================= */
+
+:root{
+  --mg-navy:#001F3F;
+  --mg-deep:#021B30;
+  --mg-card:#062B46;
+  --mg-card2:#073752;
+  --mg-cyan:#00BFFF;
+  --mg-teal:#008C8C;
+  --mg-text:#F4FCFF;
+  --mg-sub:#A9D6E5;
+  --mg-muted:#7FAFC2;
+  --mg-line:rgba(0,191,255,.20);
+}
+
+/* shared module heading */
+.page h1,.module-title,.page-title{
+  color:#FFFFFF !important;
+}
+.page p,.module-subtitle{
+  color:#A9D6E5 !important;
+}
+
+/* shared dark cards */
+.patient-table-card,
+.appt-mini,
+.appt-card,
+.appt-empty,
+.treat-mini,
+.treatment-card,
+.record-mini,
+.record-card,
+.bill-mini,
+.bill-row,
+.billing-empty{
+  background:linear-gradient(145deg,rgba(6,48,77,.97),rgba(3,29,50,.98)) !important;
+  border:1px solid var(--mg-line) !important;
+  box-shadow:0 14px 35px rgba(0,0,0,.24),0 0 18px rgba(0,191,255,.035) !important;
+  color:var(--mg-text) !important;
+}
+
+/* statistic labels/numbers */
+.appt-mini-label,
+.treat-mini-label,
+.record-mini-label,
+.bill-mini-label{
+  color:#8FB8C9 !important;
+}
+.appt-mini-number,
+.treat-mini-number,
+.record-mini-number,
+.bill-mini-number{
+  color:#F4FCFF !important;
+}
+.bill-mini-sub{
+  color:#7FAFC2 !important;
+}
+
+/* PATIENTS */
+.patient-table{
+  background:transparent !important;
+}
+.patient-table th{
+  color:#7FC0D5 !important;
+}
+.patient-table td{
+  color:#DDF6FF !important;
+  border-bottom-color:rgba(0,191,255,.10) !important;
+}
+.patient-table tbody tr:hover{
+  background:rgba(0,191,255,.06) !important;
+}
+.patient-row-name{
+  color:#FFFFFF !important;
+}
+.patient-row-id,
+.patient-treatment{
+  color:#8FB8C9 !important;
+}
+.patient-row-avatar{
+  background:rgba(0,191,255,.13) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+
+/* APPOINTMENTS */
+.appt-date,
+.appt-filter{
+  background:rgba(2,31,52,.94) !important;
+  color:#DDF6FF !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.appt-card{
+  transition:.18s ease;
+}
+.appt-card:hover{
+  border-color:rgba(0,191,255,.42) !important;
+  box-shadow:0 15px 38px rgba(0,0,0,.28),0 0 20px rgba(0,191,255,.07) !important;
+}
+.appt-time-box{
+  background:rgba(0,191,255,.10) !important;
+  border:1px solid rgba(0,191,255,.16);
+}
+.appt-time{
+  color:#FFFFFF !important;
+}
+.appt-date-small,
+.appt-info{
+  color:#86B4C6 !important;
+}
+.appt-patient-name{
+  color:#FFFFFF !important;
+}
+.appt-avatar{
+  background:rgba(0,191,255,.13) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+.appt-actions .appt-action{
+  background:rgba(0,191,255,.06) !important;
+  color:#BCEBFA !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.appt-actions .appt-action:hover{
+  background:rgba(0,191,255,.14) !important;
+  color:#FFFFFF !important;
+}
+.appt-status.scheduled{
+  background:rgba(0,229,195,.12) !important;
+  color:#00E5C3 !important;
+  border:1px solid rgba(0,229,195,.26) !important;
+}
+.appt-status.inchair{
+  background:rgba(255,200,87,.12) !important;
+  color:#FFD36A !important;
+  border:1px solid rgba(255,200,87,.26) !important;
+}
+.appt-status.completed{
+  background:rgba(0,191,255,.12) !important;
+  color:#58D9FF !important;
+  border:1px solid rgba(0,191,255,.25) !important;
+}
+.appt-status.cancelled{
+  background:rgba(255,80,100,.12) !important;
+  color:#FF8797 !important;
+  border:1px solid rgba(255,80,100,.25) !important;
+}
+
+/* TREATMENT */
+.treatment-card{
+  transition:.18s ease;
+}
+.treatment-card:hover{
+  border-color:rgba(0,191,255,.42) !important;
+  box-shadow:0 15px 38px rgba(0,0,0,.28),0 0 20px rgba(0,191,255,.07) !important;
+}
+.treatment-avatar{
+  background:rgba(0,191,255,.13) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+.treatment-patient strong{
+  color:#FFFFFF !important;
+}
+.treatment-patient small{
+  color:#8FB8C9 !important;
+}
+.treatment-meta{
+  border-top-color:rgba(0,191,255,.12) !important;
+}
+.treat-meta-item span{
+  color:#729FB2 !important;
+}
+.treat-meta-item strong{
+  color:#DDF6FF !important;
+}
+.treatment-notes{
+  background:rgba(0,191,255,.06) !important;
+  color:#A9D6E5 !important;
+  border:1px solid rgba(0,191,255,.10);
+}
+.treatment-action{
+  background:rgba(0,191,255,.06) !important;
+  color:#BCEBFA !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.treatment-action:hover{
+  background:rgba(0,191,255,.14) !important;
+  color:#FFFFFF !important;
+}
+
+/* RECORDS & X-RAY */
+.record-card{
+  transition:.18s ease;
+}
+.record-card:hover{
+  border-color:rgba(0,191,255,.42) !important;
+  box-shadow:0 15px 38px rgba(0,0,0,.28),0 0 20px rgba(0,191,255,.07) !important;
+}
+.record-avatar{
+  background:rgba(0,191,255,.13) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+.record-patient strong{
+  color:#FFFFFF !important;
+}
+.record-patient small{
+  color:#8FB8C9 !important;
+}
+.record-meta{
+  border-top-color:rgba(0,191,255,.12) !important;
+}
+.record-meta-item span{
+  color:#729FB2 !important;
+}
+.record-meta-item strong{
+  color:#DDF6FF !important;
+}
+.record-description{
+  background:rgba(0,191,255,.06) !important;
+  color:#A9D6E5 !important;
+  border:1px solid rgba(0,191,255,.10);
+}
+.record-action{
+  background:rgba(0,191,255,.06) !important;
+  color:#BCEBFA !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.record-action:hover{
+  background:rgba(0,191,255,.14) !important;
+  color:#FFFFFF !important;
+}
+.record-type.xray{
+  background:rgba(0,191,255,.13) !important;
+  color:#57D8FF !important;
+}
+.record-type.clinical{
+  background:rgba(0,229,195,.12) !important;
+  color:#00E5C3 !important;
+}
+.record-type.document{
+  background:rgba(150,110,255,.12) !important;
+  color:#B99AFF !important;
+}
+.record-type.prescription{
+  background:rgba(255,174,78,.12) !important;
+  color:#FFC36B !important;
+}
+.record-type.other{
+  background:rgba(150,180,195,.10) !important;
+  color:#A8C4D0 !important;
+}
+.record-detail-item{
+  background:rgba(0,191,255,.06) !important;
+}
+.record-detail-label{
+  color:#729FB2 !important;
+}
+.record-detail-value{
+  color:#E4F8FF !important;
+}
+
+/* BILLING */
+.bill-mini{
+  transition:.18s ease;
+}
+.bill-mini:hover{
+  border-color:rgba(0,191,255,.42) !important;
+}
+.bill-row{
+  transition:.18s ease;
+}
+.bill-row:hover{
+  border-color:rgba(0,191,255,.42) !important;
+  box-shadow:0 15px 38px rgba(0,0,0,.28),0 0 20px rgba(0,191,255,.07) !important;
+}
+.bill-avatar{
+  background:rgba(0,191,255,.13) !important;
+  color:#00BFFF !important;
+  border:1px solid rgba(0,191,255,.20);
+}
+.bill-name{
+  color:#FFFFFF !important;
+}
+.bill-meta{
+  color:#8FB8C9 !important;
+}
+.bill-money label{
+  color:#729FB2 !important;
+}
+.bill-money strong{
+  color:#F4FCFF !important;
+}
+.bill-status.paid{
+  background:rgba(0,229,195,.12) !important;
+  color:#00E5C3 !important;
+  border:1px solid rgba(0,229,195,.26) !important;
+}
+.bill-status.partial{
+  background:rgba(255,200,87,.12) !important;
+  color:#FFD36A !important;
+  border:1px solid rgba(255,200,87,.26) !important;
+}
+.bill-status.pending{
+  background:rgba(255,80,100,.12) !important;
+  color:#FF8797 !important;
+  border:1px solid rgba(255,80,100,.25) !important;
+}
+.bill-action{
+  background:rgba(0,191,255,.06) !important;
+  color:#BCEBFA !important;
+  border-color:rgba(0,191,255,.20) !important;
+}
+.bill-action:hover{
+  background:rgba(0,191,255,.14) !important;
+  color:#FFFFFF !important;
+}
+.invoice-total-box{
+  background:rgba(0,191,255,.06) !important;
+}
+.invoice-line{
+  color:#A9D6E5 !important;
+}
+.invoice-line.total{
+  color:#FFFFFF !important;
+  border-top-color:rgba(0,191,255,.15) !important;
+}
+.bill-detail-head{
+  background:rgba(0,191,255,.07) !important;
+}
+.bill-detail-head h4{
+  color:#FFFFFF !important;
+}
+.bill-detail-head p{
+  color:#8FB8C9 !important;
+}
+.bill-detail-item{
+  background:rgba(0,191,255,.06) !important;
+}
+.bill-detail-label{
+  color:#729FB2 !important;
+}
+.bill-detail-value{
+  color:#E4F8FF !important;
+}
+
+/* SEARCH/FILTER CONTROLS */
+.search-box{
+  background:rgba(2,31,52,.96) !important;
+  border:1px solid rgba(0,191,255,.22) !important;
+  color:#DDF6FF !important;
+}
+.search-box input{
+  color:#F4FCFF !important;
+}
+.search-box input::placeholder{
+  color:#6F9BAD !important;
+}
+.appt-filter,.bill-filter,.record-filter,.treatment-filter{
+  background:rgba(2,31,52,.96) !important;
+  color:#DDF6FF !important;
+  border-color:rgba(0,191,255,.22) !important;
+}
+.appt-filter:focus,.bill-filter:focus,.record-filter:focus,.treatment-filter:focus,
+.search-box:focus-within{
+  border-color:#00BFFF !important;
+  box-shadow:0 0 0 3px rgba(0,191,255,.08),0 0 18px rgba(0,191,255,.08) !important;
+}
+
+/* ACTION BUTTONS */
+.appt-toolbar .primary-button,
+.treatment-toolbar .primary-button,
+.records-toolbar .primary-button,
+.billing-toolbar .primary-button{
+  background:linear-gradient(135deg,#008C8C,#00BFFF) !important;
+  color:#FFFFFF !important;
+  border:0 !important;
+  box-shadow:0 8px 22px rgba(0,191,255,.20) !important;
+}
+
+/* Fix overly pale text inherited from the old light theme */
+.billing-page *,
+.treatment-page *,
+.appointment-page *,
+.records-page *,
+.patients-page *{
+  text-shadow:none;
+}
+
+/* Keep readable text inside dark cards */
+.billing-page .bill-row *,
+.treatment-page .treatment-card *,
+.appointment-page .appt-card *,
+.records-page .record-card *{
+  opacity:1 !important;
+}
+
+/* mobile */
+@media(max-width:900px){
+  .bill-amounts{color:#DDF6FF !important;}
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     DESKTOP SIDEBAR
+===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <!--
+        FULL NAME APPEARS ONLY HERE
+    -->
+
+    <div class="doctor-brand">
+
+        <div class="doctor-name">
+            Dr.Megha Dadarwal
+        </div>
+
+        <div class="doctor-speciality">
+            Endodontist
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
+
+    <button
+        class="nav-item active"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        Dashboard
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            👥
+        </span>
+
+        Patients
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            📅
+        </span>
+
+        Appointments
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            🦷
+        </span>
+
+        Treatment
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            🩻
+        </span>
+
+        Records & X-Ray
+
+    </button>
+
+
+    <div
+        class="nav-title"
+        style="margin-top:18px;"
+    >
+        PRACTICE
+    </div>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            💳
+        </span>
+
+        Billing
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            📊
+        </span>
+
+        Reports
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="selectMenu(this)"
+    >
+
+        <span class="nav-icon">
+            ⚙️
+        </span>
+
+        Settings
+
+    </button>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main">
+
+<div id="dashboardPage" class="page">
+
+
+    <!-- =================================================
+         TOP BAR
+    ================================================= -->
+
+    <div class="topbar">
+
+
+        <div class="greeting">
+
+            <h1>
+                Dr.Megha 
+            </h1>
+
+            <p>
+                Welcome back. Here is your practice overview.
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+
+            <button
+                class="icon-button mobile-menu"
+                onclick="toggleMenu()"
+            >
+                ☰
+            </button>
+
+
+            <button
+                class="icon-button"
+                title="Notifications"
+            >
+                ♧
+            </button>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    DM
+                </div>
+
+                <div>
+
+                    <div class="profile-name">
+                        Dr. Megha
+                    </div>
+
+                    <div class="profile-role">
+                        Endodontist
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         HERO
+    ================================================= -->
+
+    <section class="hero">
+
+
+        <div class="hero-content">
+
+            <h2>
+                Your Practice, Simplified
+            </h2>
+
+            <p>
+                Manage patients, appointments and
+                treatment progress from one place.
+            </p>
+
+        </div>
+
+
+        <button
+            class="hero-button"
+            onclick="quickAction('appointment')"
+        >
+            + New Appointment
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FILTERS
+    ================================================= -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            onclick="setFilter(this)"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            onclick="setFilter(this)"
+        >
+            Today
+        </button>
+
+        <button
+            class="filter"
+            onclick="setFilter(this)"
+        >
+            Upcoming
+        </button>
+
+        <button
+            class="filter"
+            onclick="setFilter(this)"
+        >
+            Treatments
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-title">
+                    Today's Patients
+                </div>
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                12
+            </div>
+
+            <div class="stat-description">
+                Patients scheduled today
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-title">
+                    Appointments
+                </div>
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                08
+            </div>
+
+            <div class="stat-description">
+                Upcoming appointments
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-title">
+                    Active Treatments
+                </div>
+
+                <div class="stat-icon">
+                    🦷
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                06
+            </div>
+
+            <div class="stat-description">
+                Ongoing treatment plans
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-title">
+                    Pending Bills
+                </div>
+
+                <div class="stat-icon">
+                    💳
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                04
+            </div>
+
+            <div class="stat-description">
+                Bills requiring attention
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         LOWER CONTENT
+    ================================================= -->
+
+    <section class="lower-grid">
+
+
+        <!-- ===============================================
+             APPOINTMENTS
+        =============================================== -->
+
+        <div class="card">
+
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Today's Appointments
+                </div>
+
+                <button
+                    class="view-all"
+                    onclick="viewAppointments()"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT 1 -->
+
+            <div class="appointment">
+
+                <div class="appointment-time">
+                    10:00 AM
+                </div>
+
+                <div class="patient-avatar">
+                    AS
+                </div>
+
+                <div class="patient-info">
+
+                    <div class="patient-name">
+                        Arjun Sharma
+                    </div>
+
+                    <div class="patient-treatment">
+                        Root Canal Treatment · Tooth 46
+                    </div>
+
+                </div>
+
+                <div class="status inchair">
+                    In-Chair
+                </div>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT 2 -->
+
+            <div class="appointment">
+
+                <div class="appointment-time">
+                    11:30 AM
+                </div>
+
+                <div class="patient-avatar">
+                    PK
+                </div>
+
+                <div class="patient-info">
+
+                    <div class="patient-name">
+                        Priya Kapoor
+                    </div>
+
+                    <div class="patient-treatment">
+                        Dental Consultation
+                    </div>
+
+                </div>
+
+                <div class="status scheduled">
+                    Scheduled
+                </div>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT 3 -->
+
+            <div class="appointment">
+
+                <div class="appointment-time">
+                    12:30 PM
+                </div>
+
+                <div class="patient-avatar">
+                    RS
+                </div>
+
+                <div class="patient-info">
+
+                    <div class="patient-name">
+                        Rahul Singh
+                    </div>
+
+                    <div class="patient-treatment">
+                        Re-RCT · Tooth 36
+                    </div>
+
+                </div>
+
+                <div class="status scheduled">
+                    Scheduled
+                </div>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT 4 -->
+
+            <div class="appointment">
+
+                <div class="appointment-time">
+                    05:00 PM
+                </div>
+
+                <div class="patient-avatar">
+                    NM
+                </div>
+
+                <div class="patient-info">
+
+                    <div class="patient-name">
+                        Neha Malhotra
+                    </div>
+
+                    <div class="patient-treatment">
+                        Post RCT Review
+                    </div>
+
+                </div>
+
+                <div class="status scheduled">
+                    Scheduled
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ===============================================
+             QUICK ACTIONS
+        =============================================== -->
+
+        <div class="card">
+
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Quick Actions
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <button
+                    class="quick-card"
+                    onclick="quickAction('patient')"
+                >
+
+                    <div class="quick-icon">
+                        👤
+                    </div>
+
+                    <span class="quick-title">
+                        New Patient
+                    </span>
+
+                    <span class="quick-text">
+                        Create patient record
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="quick-card"
+                    onclick="quickAction('appointment')"
+                >
+
+                    <div class="quick-icon">
+                        📅
+                    </div>
+
+                    <span class="quick-title">
+                        Appointment
+                    </span>
+
+                    <span class="quick-text">
+                        Schedule appointment
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="quick-card"
+                    onclick="quickAction('treatment')"
+                >
+
+                    <div class="quick-icon">
+                        🦷
+                    </div>
+
+                    <span class="quick-title">
+                        Treatment
+                    </span>
+
+                    <span class="quick-text">
+                        Start treatment plan
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="quick-card"
+                    onclick="quickAction('xray')"
+                >
+
+                    <div class="quick-icon">
+                        🩻
+                    </div>
+
+                    <span class="quick-title">
+                        Add X-Ray
+                    </span>
+
+                    <span class="quick-text">
+                        Upload patient record
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- PRACTICE HEALTH -->
+
+            <div class="health">
+
+
+                <div class="health-header">
+
+                    <div class="health-title">
+                        Practice Health
+                    </div>
+
+                    <div class="health-value">
+                        86%
+                    </div>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar"></div>
+
+                </div>
+
+
+                <div class="health-text">
+                    Your practice is running smoothly today.
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+<!-- =====================================================
+     PATIENTS PAGE
+===================================================== -->
+<div id="patientsPage" class="page patients-page hidden">
+
+    <div class="module-head">
+        <div class="module-title">
+            <h2>Patients</h2>
+            <p>Manage patient profiles and clinical information.</p>
+        </div>
+        <button class="primary-button" onclick="openPatientModal()">+ New Patient</button>
+    </div>
+
+    <div class="patient-toolbar">
+        <div class="search-box">
+            <span>🔎</span>
+            <input id="patientSearch" type="text"
+                   placeholder="Search by patient name, ID, phone or treatment..."
+                   oninput="renderPatients()">
+        </div>
+        <div class="patient-count">
+            Total Patients: <strong id="patientCount">0</strong>
+        </div>
+    </div>
+
+    <div class="patient-table-card">
+        <div class="patient-table-wrap">
+            <table class="patient-table">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Phone</th>
+                        <th>Age / Gender</th>
+                        <th>Treatment</th>
+                        <th>Last Visit</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="patientTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="appointmentsPage" class="page appointment-page hidden">
+    <div class="module-head">
+        <div class="module-title">
+            <h2>Appointments</h2>
+            <p>Schedule and manage your daily patient appointments.</p>
+        </div>
+        <button class="primary-button" onclick="openAppointmentModal()">+ New Appointment</button>
+    </div>
+    <div class="appointment-summary">
+        <div class="appt-mini"><div class="appt-mini-label">Today's Appointments</div><div class="appt-mini-number" id="apptTodayCount">0</div></div>
+        <div class="appt-mini"><div class="appt-mini-label">Scheduled</div><div class="appt-mini-number" id="apptScheduledCount">0</div></div>
+        <div class="appt-mini"><div class="appt-mini-label">Completed</div><div class="appt-mini-number" id="apptCompletedCount">0</div></div>
+        <div class="appt-mini"><div class="appt-mini-label">Cancelled</div><div class="appt-mini-number" id="apptCancelledCount">0</div></div>
+    </div>
+    <div class="appt-toolbar">
+        <div class="search-box"><span>🔎</span><input id="appointmentSearch" type="text" placeholder="Search patient, treatment or appointment..." oninput="renderAppointments()"></div>
+        <input id="appointmentDateFilter" class="appt-date" type="date" onchange="renderAppointments()">
+        <select id="appointmentStatusFilter" class="appt-filter" onchange="renderAppointments()">
+            <option value="All">All Status</option><option value="Scheduled">Scheduled</option><option value="In-Chair">In-Chair</option><option value="Completed">Completed</option><option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
+    <div id="appointmentList" class="appt-list"></div>
+</div>
+
+
+
+<!-- =====================================================
+     RECORDS & X-RAY PAGE
+===================================================== -->
+<div id="recordsPage" class="page records-page hidden">
+  <div class="module-head">
+    <div class="module-title"><h2>Records &amp; X-Ray</h2><p>Store X-rays, clinical records, prescriptions and patient documents in one place.</p></div>
+    <button class="primary-button" onclick="openRecordModal()">+ Add Record</button>
+  </div>
+
+  <div class="records-summary">
+    <div class="record-mini"><div class="record-mini-label">Total Records</div><div class="record-mini-number" id="recordTotalCount">0</div></div>
+    <div class="record-mini"><div class="record-mini-label">X-Rays</div><div class="record-mini-number" id="recordXrayCount">0</div></div>
+    <div class="record-mini"><div class="record-mini-label">Documents</div><div class="record-mini-number" id="recordDocumentCount">0</div></div>
+    <div class="record-mini"><div class="record-mini-label">This Month</div><div class="record-mini-number" id="recordMonthCount">0</div></div>
+  </div>
+
+  <div class="records-toolbar">
+    <div class="search-box"><span>🔎</span><input id="recordSearch" type="text" placeholder="Search patient, record type, title or ID..." oninput="renderRecords()"></div>
+    <select id="recordTypeFilter" class="record-filter" onchange="renderRecords()">
+      <option value="All">All Types</option><option>X-Ray</option><option>Clinical Record</option><option>Document</option><option>Prescription</option><option>Other</option>
+    </select>
+    <select id="recordPatientFilter" class="record-filter" onchange="renderRecords()"><option value="All">All Patients</option></select>
+  </div>
+
+  <div id="recordList" class="record-list"></div>
+</div>
+
+
+<!-- =====================================================
+     TREATMENT PAGE
+===================================================== -->
+<div id="treatmentPage" class="page treatment-page hidden">
+  <div class="module-head">
+    <div class="module-title"><h2>Treatment</h2><p>Manage treatment plans, procedures, tooth details and clinical progress.</p></div>
+    <button class="primary-button" onclick="openTreatmentModal()">+ New Treatment</button>
+  </div>
+  <div class="treatment-summary">
+    <div class="treat-mini"><div class="treat-mini-label">Active Treatments</div><div class="treat-mini-number" id="treatActiveCount">0</div></div>
+    <div class="treat-mini"><div class="treat-mini-label">Planned</div><div class="treat-mini-number" id="treatPlannedCount">0</div></div>
+    <div class="treat-mini"><div class="treat-mini-label">Completed</div><div class="treat-mini-number" id="treatCompletedCount">0</div></div>
+    <div class="treat-mini"><div class="treat-mini-label">Follow-ups</div><div class="treat-mini-number" id="treatFollowupCount">0</div></div>
+  </div>
+  <div class="treatment-toolbar">
+    <div class="search-box"><span>🔎</span><input id="treatmentSearch" type="text" placeholder="Search patient, tooth, treatment or ID..." oninput="renderTreatments()"></div>
+    <select id="treatmentStatusFilter" class="treatment-filter" onchange="renderTreatments()">
+      <option value="All">All Status</option><option value="Planned">Planned</option><option value="In Progress">In Progress</option><option value="Completed">Completed</option><option value="On Hold">On Hold</option>
+    </select>
+    <select id="treatmentTypeFilter" class="treatment-filter" onchange="renderTreatments()">
+      <option value="All">All Procedures</option><option>Root Canal Treatment</option><option>Dental Implant</option><option>Tooth Filling</option><option>Veneers</option><option>Crown</option><option>Bridge</option><option>Cleaning / Scaling</option><option>General Consultation</option><option>Re-RCT</option>
+    </select>
+  </div>
+  <div id="treatmentList" class="treatment-list"></div>
+</div>
+<div id="billingPage" class="page billing-page hidden">
+  <div class="module-head">
+    <div class="module-title"><h2>Billing</h2><p>Create invoices, record payments and track outstanding balances.</p></div>
+    <button class="primary-button" onclick="openBillingModal()">+ New Invoice</button>
+  </div>
+  <div class="billing-summary">
+    <div class="bill-mini"><div class="bill-mini-label">Total Invoiced</div><div class="bill-mini-number" id="billTotalInvoiced">₹0</div><div class="bill-mini-sub">All invoices</div></div>
+    <div class="bill-mini"><div class="bill-mini-label">Collected</div><div class="bill-mini-number" id="billCollected">₹0</div><div class="bill-mini-sub">Payments received</div></div>
+    <div class="bill-mini"><div class="bill-mini-label">Pending</div><div class="bill-mini-number" id="billPending">₹0</div><div class="bill-mini-sub">Outstanding balance</div></div>
+    <div class="bill-mini"><div class="bill-mini-label">Invoices</div><div class="bill-mini-number" id="billInvoiceCount">0</div><div class="bill-mini-sub">Total billing records</div></div>
+  </div>
+  <div class="billing-toolbar">
+    <div class="search-box"><span>🔎</span><input id="billingSearch" type="text" placeholder="Search patient, invoice or treatment..." oninput="renderBilling()"></div>
+    <select id="billingStatusFilter" class="bill-filter" onchange="renderBilling()"><option value="All">All Status</option><option value="Paid">Paid</option><option value="Partial">Partial</option><option value="Pending">Pending</option></select>
+    <select id="billingPatientFilter" class="bill-filter" onchange="renderBilling()"><option value="All">All Patients</option></select>
+  </div>
+  <div id="billingList" class="bill-list"></div>
+</div>
+
+<!-- =====================================================
+     REPORTS PAGE
+===================================================== -->
+<div id="reportsPage" class="page reports-page hidden">
+  <div class="module-head">
+    <div class="module-title"><h2>Reports</h2><p>Practice performance, patient activity, treatments, records and billing overview.</p></div>
+  </div>
+
+  <div class="report-controls">
+    <div><label style="display:block;font-size:9px;color:#7b879b;margin:0 0 5px 3px">FROM DATE</label><input id="reportFrom" class="report-control" type="date"></div>
+    <div><label style="display:block;font-size:9px;color:#7b879b;margin:0 0 5px 3px">TO DATE</label><input id="reportTo" class="report-control" type="date"></div>
+    <div class="report-actions"><button class="report-button" onclick="setReportPeriod('month')">This Month</button><button class="report-button" onclick="setReportPeriod('all')">All Time</button><button class="report-button primary" onclick="printReports()">🖨 Print Report</button><button class="report-button" onclick="exportReportsCSV()">↓ Export CSV</button></div>
+  </div>
+
+  <div id="reportPeriodLabel" class="report-period">All practice data</div>
+
+  <div class="report-summary">
+    <div class="report-card"><div class="report-card-label">Patients</div><div class="report-card-number" id="reportPatients">0</div><div class="report-card-sub" id="reportNewPatients">Total registered patients</div></div>
+    <div class="report-card"><div class="report-card-label">Appointments</div><div class="report-card-number" id="reportAppointments">0</div><div class="report-card-sub" id="reportCompletedAppointments">Completed in selected period</div></div>
+    <div class="report-card"><div class="report-card-label">Treatments</div><div class="report-card-number" id="reportTreatments">0</div><div class="report-card-sub" id="reportActiveTreatments">Active / in progress</div></div>
+    <div class="report-card"><div class="report-card-label">Records & X-Ray</div><div class="report-card-number" id="reportRecords">0</div><div class="report-card-sub" id="reportXrays">X-rays in selected period</div></div>
+  </div>
+
+  <div class="report-grid">
+    <section class="report-section">
+      <h3>💳 Billing Summary</h3>
+      <table class="report-table"><tbody>
+        <tr><td>Total Invoiced</td><td class="report-money" id="reportInvoiced">₹0</td></tr>
+        <tr><td>Collected</td><td class="report-money" id="reportCollected">₹0</td></tr>
+        <tr><td>Pending</td><td class="report-money" id="reportPending">₹0</td></tr>
+        <tr><td>Invoices</td><td class="report-money" id="reportInvoices">0</td></tr>
+      </tbody></table>
+    </section>
+    <section class="report-section">
+      <h3>📅 Appointment Status</h3>
+      <div id="reportAppointmentStatus"></div>
+    </section>
+  </div>
+
+  <div class="report-grid">
+    <section class="report-section">
+      <h3>🦷 Treatment Status</h3>
+      <div id="reportTreatmentStatus"></div>
+    </section>
+    <section class="report-section">
+      <h3>🩻 Record Types</h3>
+      <div id="reportRecordTypes"></div>
+    </section>
+  </div>
+
+  <section class="report-section" style="margin-bottom:18px">
+    <h3>👥 Patient Activity</h3>
+    <div id="reportPatientActivity"></div>
+    <div class="report-note">Patient total is the current number stored in the browser. Activity rows use appointments and treatments within the selected period.</div>
+  </section>
+</div>
+
+
+<!-- =====================================================
+     SETTINGS PAGE
+===================================================== -->
+<div id="settingsPage" class="page settings-page hidden">
+  <div class="module-head">
+    <div class="module-title"><h2>Settings</h2><p>Manage clinic information, application preferences and local data.</p></div>
+    <button class="primary-button" onclick="saveClinicSettings()">Save Changes</button>
+  </div>
+
+  <div class="settings-grid">
+    <section class="settings-card">
+      <h3>🏥 Clinic Information</h3>
+      <p>These details are saved locally and can be used across the application.</p>
+      <div class="settings-form">
+        <div><label class="settings-label">Clinic Name</label><input id="setClinicName" class="settings-input" value="Dr. Megha Dental & Implant Practice"></div>
+        <div><label class="settings-label">Doctor Name</label><input id="setDoctorName" class="settings-input" value="Dr. Megha Dadarwal"></div>
+        <div><label class="settings-label">Speciality</label><input id="setSpeciality" class="settings-input" value="Endodontist"></div>
+        <div><label class="settings-label">Phone</label><input id="setClinicPhone" class="settings-input" placeholder="Clinic phone number"></div>
+        <div><label class="settings-label">Email</label><input id="setClinicEmail" class="settings-input" type="email" placeholder="Clinic email"></div>
+        <div><label class="settings-label">GST / Registration No.</label><input id="setRegistration" class="settings-input" placeholder="Optional"></div>
+        <div class="full"><label class="settings-label">Clinic Address</label><textarea id="setClinicAddress" class="settings-textarea" placeholder="Clinic address"></textarea></div>
+      </div>
+      <div class="settings-actions"><button class="settings-button primary" onclick="saveClinicSettings()">Save Clinic Details</button></div>
+    </section>
+
+    <section class="settings-card">
+      <h3>⚙️ Application Preferences</h3>
+      <p>Control how the local clinic application behaves on this computer.</p>
+      <div class="settings-row"><div><strong>Compact interface</strong><span>Use tighter spacing for lists and cards.</span></div><label class="switch"><input id="setCompact" type="checkbox" onchange="savePreferenceSettings()"><span class="switch-slider"></span></label></div>
+      <div class="settings-row"><div><strong>Show demo data</strong><span>Keep the sample records visible while testing.</span></div><label class="switch"><input id="setDemo" type="checkbox" checked onchange="savePreferenceSettings()"><span class="switch-slider"></span></label></div>
+      <div class="settings-row"><div><strong>Confirm before deleting</strong><span>Ask for confirmation before deleting records.</span></div><label class="switch"><input id="setConfirmDelete" type="checkbox" checked onchange="savePreferenceSettings()"><span class="switch-slider"></span></label></div>
+      <div class="settings-row"><div><strong>Currency</strong><span>Currency used in billing and reports.</span></div><select id="setCurrency" class="settings-select" style="width:120px" onchange="savePreferenceSettings()"><option value="INR">INR ₹</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="EUR">EUR €</option></select></div>
+    </section>
+
+    <section class="settings-card">
+      <h3>💾 Data Management</h3>
+      <p>Your current application data is stored locally in this browser.</p>
+      <div class="data-actions">
+        <button class="settings-button" onclick="exportClinicData()">↓ Export Backup</button>
+        <button class="settings-button" onclick="document.getElementById('importClinicFile').click()">↑ Import Backup</button>
+      </div>
+      <input id="importClinicFile" type="file" accept="application/json,.json" style="display:none" onchange="importClinicData(event)">
+      <div class="settings-note">Backup includes patients, appointments, treatments, records metadata, billing records and clinic settings. Keep a backup before clearing browser data.</div>
+      <div class="settings-actions"><button class="settings-button danger" onclick="clearClinicData()">Clear Clinic Data</button></div>
+    </section>
+
+    <section class="settings-card">
+      <h3>🔐 Privacy & Storage</h3>
+      <p>Simple information about how this offline version works.</p>
+      <div class="settings-row"><div><strong>Storage mode</strong><span>Local browser storage on this computer.</span></div><span class="settings-status">LOCAL</span></div>
+      <div class="settings-row"><div><strong>Cloud sync</strong><span>No cloud/database connection is configured in this version.</span></div><span style="font-size:9px;color:#7d879b;font-weight:700">OFF</span></div>
+      <div class="settings-row"><div><strong>Login / OTP</strong><span>This application opens directly without login or OTP.</span></div><span class="settings-status">OFF</span></div>
+      <div class="settings-note">For real clinic deployment, patient data should eventually be moved to a secure backend with authentication, access controls, encrypted storage and proper backups.</div>
+    </section>
+
+    <section class="settings-card full">
+      <h3>ℹ️ About This Application</h3>
+      <p>Dr. Megha Dadarwal dental clinic management application.</p>
+      <div class="settings-row"><div><strong>Application</strong><span>Dental Clinic Management</span></div><span style="font-size:9px;color:#7d879b">v1.0</span></div>
+      <div class="settings-row"><div><strong>Modules</strong><span>Dashboard · Patients · Appointments · Treatment · Records & X-Ray · Billing · Reports · Settings</span></div><span class="settings-status">COMPLETE</span></div>
+    </section>
+  </div>
+</div>
+
+</main>
+
+
+
+<!-- =====================================================
+     PATIENT FORM MODAL
+===================================================== -->
+<div class="modal-backdrop" id="patientModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h3 id="patientModalTitle">Add New Patient</h3>
+                <p>Enter the patient's basic and clinical information.</p>
+            </div>
+            <button class="close-button" onclick="closePatientModal()">×</button>
+        </div>
+
+        <form id="patientForm" onsubmit="savePatient(event)">
+            <input type="hidden" id="patientEditId">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Patient ID</label>
+                    <input id="patientIdDisplay" type="text" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input id="patientName" type="text" required placeholder="Enter full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input id="patientPhone" type="tel" required placeholder="Enter phone number">
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input id="patientAge" type="number" min="0" max="120" placeholder="Age">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="patientGender">
+                        <option value="">Select gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input id="patientDob" type="date">
+                </div>
+
+                <div class="form-group">
+                    <label>Last Visit</label>
+                    <input id="patientLastVisit" type="date">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="patientStatus">
+                        <option>Active</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Chief Complaint</label>
+                    <textarea id="patientComplaint" placeholder="Main dental complaint or reason for visit"></textarea>
+                </div>
+
+                <div class="form-group full">
+                    <label>Treatment / Procedure</label>
+                    <input id="patientTreatment" type="text" placeholder="e.g. Root Canal Treatment · Tooth 46">
+                </div>
+
+                <div class="form-group full">
+                    <label>Medical History</label>
+                    <textarea id="patientHistory" placeholder="Relevant medical history"></textarea>
+                </div>
+
+                <div class="form-group full">
+                    <label>Allergies</label>
+                    <textarea id="patientAllergies" placeholder="Known allergies or write None"></textarea>
+                </div>
+
+                <div class="form-group full">
+                    <label>Notes</label>
+                    <textarea id="patientNotes" placeholder="Additional notes"></textarea>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button type="button" class="secondary-button" onclick="closePatientModal()">Cancel</button>
+                <button type="submit" class="primary-button" id="patientSaveButton">Save Patient</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- =====================================================
+     PATIENT DETAILS MODAL
+===================================================== -->
+<div class="modal-backdrop" id="patientDetailsModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h3>Patient Profile</h3>
+                <p>Patient information and clinical notes.</p>
+            </div>
+            <button class="close-button" onclick="closePatientDetails()">×</button>
+        </div>
+        <div id="patientDetailsContent"></div>
+        <div class="form-footer">
+            <button type="button" class="secondary-button" onclick="closePatientDetails()">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal-backdrop" id="appointmentModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div><h3 id="appointmentModalTitle">New Appointment</h3><p>Create a scheduled appointment for an existing patient.</p></div>
+            <button class="close-button" onclick="closeAppointmentModal()">×</button>
+        </div>
+        <form id="appointmentForm" onsubmit="saveAppointment(event)">
+            <input type="hidden" id="appointmentEditId">
+            <div class="form-grid">
+                <div class="form-group full"><label>Patient *</label><select id="appointmentPatient" required></select></div>
+                <div class="form-group"><label>Date *</label><input id="appointmentDate" type="date" required></div>
+                <div class="form-group"><label>Time *</label><input id="appointmentTime" type="time" required></div>
+                <div class="form-group full"><label>Treatment / Procedure *</label><input id="appointmentTreatment" type="text" required placeholder="e.g. Root Canal Treatment · Tooth 46"></div>
+                <div class="form-group"><label>Status</label><select id="appointmentStatus"><option>Scheduled</option><option>In-Chair</option><option>Completed</option><option>Cancelled</option></select></div>
+                <div class="form-group"><label>Duration</label><select id="appointmentDuration"><option>30 minutes</option><option>45 minutes</option><option>60 minutes</option><option>90 minutes</option><option>120 minutes</option></select></div>
+                <div class="form-group full"><label>Notes</label><textarea id="appointmentNotes" placeholder="Appointment notes"></textarea></div>
+            </div>
+            <div class="form-footer">
+                <button type="button" class="secondary-button" onclick="closeAppointmentModal()">Cancel</button>
+                <button type="submit" class="primary-button" id="appointmentSaveButton">Save Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="appointmentDetailsModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div><h3>Appointment Details</h3><p>Appointment information and notes.</p></div>
+            <button class="close-button" onclick="closeAppointmentDetails()">×</button>
+        </div>
+        <div id="appointmentDetailsContent"></div>
+        <div class="form-footer"><button type="button" class="secondary-button" onclick="closeAppointmentDetails()">Close</button></div>
+    </div>
+</div>
+
+
+
+<!-- =====================================================
+     TREATMENT FORM MODAL
+===================================================== -->
+<div class="modal-backdrop" id="treatmentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div><h3 id="treatmentModalTitle">Add New Treatment</h3><p>Create a treatment plan linked to an existing patient.</p></div>
+      <button class="close-button" onclick="closeTreatmentModal()">×</button>
+    </div>
+    <form id="treatmentForm" onsubmit="saveTreatment(event)">
+      <input type="hidden" id="treatmentEditId">
+      <div class="form-grid">
+        <div class="form-group"><label>Patient *</label><select id="treatmentPatient" required></select></div>
+        <div class="form-group"><label>Tooth Number</label><input id="treatmentTooth" placeholder="e.g. 46, 36, 11"></div>
+        <div class="form-group"><label>Procedure *</label><select id="treatmentProcedure" required>
+          <option value="">Select procedure</option><option>Root Canal Treatment</option><option>Re-RCT</option><option>Dental Implant</option><option>Tooth Filling</option><option>Veneers</option><option>Crown</option><option>Bridge</option><option>Cleaning / Scaling</option><option>General Consultation</option>
+        </select></div>
+        <div class="form-group"><label>Diagnosis / Chief Complaint</label><input id="treatmentDiagnosis" placeholder="e.g. Irreversible pulpitis"></div>
+        <div class="form-group"><label>Treatment Stage</label><select id="treatmentStage"><option>Consultation</option><option>Diagnosis</option><option>Preparation</option><option>Procedure</option><option>Follow-up</option><option>Final / Restoration</option></select></div>
+        <div class="form-group"><label>Status</label><select id="treatmentStatus"><option>Planned</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select></div>
+        <div class="form-group"><label>Start Date</label><input id="treatmentStartDate" type="date"></div>
+        <div class="form-group"><label>Next Visit / Follow-up</label><input id="treatmentNextDate" type="date"></div>
+        <div class="form-group"><label>Estimated Fee (₹)</label><input id="treatmentFee" type="number" min="0" step="1" placeholder="0"></div>
+        <div class="form-group"><label>Treatment Notes</label><textarea id="treatmentNotes" rows="3" placeholder="Clinical notes, instructions or follow-up details..."></textarea></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="secondary-button" onclick="closeTreatmentModal()">Cancel</button><button type="submit" class="primary-button" id="treatmentSaveButton">Save Treatment</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="treatmentDetailsModal">
+  <div class="modal">
+    <div class="modal-header"><div><h3>Treatment Details</h3><p>Clinical treatment information.</p></div><button class="close-button" onclick="closeTreatmentDetails()">×</button></div>
+    <div id="treatmentDetailsContent"></div>
+    <div class="modal-footer"><button type="button" class="secondary-button" onclick="closeTreatmentDetails()">Close</button></div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     RECORD FORM MODAL
+===================================================== -->
+<div class="modal-backdrop" id="recordModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div><h3 id="recordModalTitle">Add New Record</h3><p>Link a clinical record or X-ray to an existing patient.</p></div>
+      <button class="close-button" onclick="closeRecordModal()">×</button>
+    </div>
+    <form id="recordForm" onsubmit="saveRecord(event)">
+      <input type="hidden" id="recordEditId">
+      <div class="form-grid">
+        <div class="form-group"><label>Patient *</label><select id="recordPatient" required></select></div>
+        <div class="form-group"><label>Record Type *</label><select id="recordType" required onchange="updateRecordFileHint()"><option value="X-Ray">X-Ray</option><option value="Clinical Record">Clinical Record</option><option value="Document">Document</option><option value="Prescription">Prescription</option><option value="Other">Other</option></select></div>
+        <div class="form-group full"><label>Record Title *</label><input id="recordTitle" type="text" required placeholder="e.g. Pre-op OPG X-Ray · Tooth 46"></div>
+        <div class="form-group"><label>Record Date *</label><input id="recordDate" type="date" required></div>
+        <div class="form-group"><label>Tooth Number</label><input id="recordTooth" type="text" placeholder="e.g. 46, 36, 11"></div>
+        <div class="form-group full"><label>Clinical Notes / Description</label><textarea id="recordDescription" rows="3" placeholder="Add clinical notes, findings or document description..."></textarea></div>
+        <div class="form-group full"><label>Attach X-Ray / Document</label><input id="recordFile" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" onchange="showSelectedRecordFile(this)"><div id="recordFileHint" class="file-note">Images and PDF/documents are stored locally in this browser. Choose a file to attach.</div></div>
+      </div>
+      <div class="form-footer"><button type="button" class="secondary-button" onclick="closeRecordModal()">Cancel</button><button type="submit" class="primary-button" id="recordSaveButton">Save Record</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="recordDetailsModal">
+  <div class="modal">
+    <div class="modal-header"><div><h3>Record Details</h3><p>Patient record and attached file.</p></div><button class="close-button" onclick="closeRecordDetails()">×</button></div>
+    <div id="recordDetailsContent"></div>
+    <div class="form-footer"><button type="button" class="secondary-button" onclick="closeRecordDetails()">Close</button></div>
+  </div>
+</div>
+
+
+
+
+<!-- =====================================================
+     BILLING PAGE
+===================================================== -->
+
+
+<div class="modal-backdrop" id="billingModal">
+  <div class="modal">
+    <div class="modal-header"><div><h3 id="billingModalTitle">New Invoice</h3><p>Create a patient invoice and payment record.</p></div><button class="close-button" onclick="closeBillingModal()">×</button></div>
+    <form id="billingForm" onsubmit="saveBilling(event)">
+      <input type="hidden" id="billingEditId">
+      <div class="form-grid">
+        <div class="form-group"><label>Patient *</label><select id="billingPatient" required></select></div>
+        <div class="form-group"><label>Invoice Date *</label><input id="billingDate" type="date" required></div>
+        <div class="form-group full"><label>Treatment / Procedure *</label><input id="billingTreatment" required placeholder="e.g. Root Canal Treatment · Tooth 46"></div>
+        <div class="form-group"><label>Subtotal (₹) *</label><input id="billingSubtotal" type="number" min="0" step="0.01" required oninput="calculateInvoice()"></div>
+        <div class="form-group"><label>Discount (₹)</label><input id="billingDiscount" type="number" min="0" step="0.01" value="0" oninput="calculateInvoice()"></div>
+        <div class="form-group"><label>Amount Paid (₹)</label><input id="billingPaid" type="number" min="0" step="0.01" value="0" oninput="calculateInvoice()"></div>
+        <div class="form-group"><label>Payment Method</label><select id="billingPaymentMethod"><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Other</option></select></div>
+        <div class="form-group full"><label>Notes</label><textarea id="billingNotes" rows="3" placeholder="Payment notes, invoice notes or billing remarks..."></textarea></div>
+      </div>
+      <div class="invoice-total-box"><div class="invoice-line"><span>Subtotal</span><strong id="invoiceSubtotalDisplay">₹0</strong></div><div class="invoice-line"><span>Discount</span><strong id="invoiceDiscountDisplay">₹0</strong></div><div class="invoice-line total"><span>Balance Due</span><strong id="invoiceBalanceDisplay">₹0</strong></div></div>
+      <div class="form-footer"><button type="button" class="secondary-button" onclick="closeBillingModal()">Cancel</button><button type="submit" class="primary-button">Save Invoice</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="billingDetailsModal">
+  <div class="modal">
+    <div class="modal-header"><div><h3>Invoice Details</h3><p>Patient billing and payment summary.</p></div><button class="close-button" onclick="closeBillingDetails()">×</button></div>
+    <div id="billingDetailsContent"></div>
+    <div class="form-footer"><button type="button" class="secondary-button" onclick="closeBillingDetails()">Close</button></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="mobile-bottom-nav">
+
+
+    <button
+        class="bottom-item active"
+        onclick="mobileNavigation(this)"
+    >
+
+        <span class="bottom-icon">
+            ⌂
+        </span>
+
+        <span class="bottom-text">
+            Home
+        </span>
+
+    </button>
+
+
+    <button
+        class="bottom-item"
+        onclick="mobileNavigation(this)"
+    >
+
+        <span class="bottom-icon">
+            👥
+        </span>
+
+        <span class="bottom-text">
+            Patients
+        </span>
+
+    </button>
+
+
+    <button
+        class="bottom-item"
+        onclick="mobileNavigation(this)"
+    >
+
+        <span class="bottom-icon">
+            📅
+        </span>
+
+        <span class="bottom-text">
+            Calendar
+        </span>
+
+    </button>
+
+
+    <button
+        class="bottom-item"
+        onclick="mobileNavigation(this)"
+    >
+
+        <span class="bottom-icon">
+            🦷
+        </span>
+
+        <span class="bottom-text">
+            Treatment
+        </span>
+
+    </button>
+
+
+    <button class="bottom-item" onclick="mobileNavigation(this)"><span class="bottom-icon">💳</span><span class="bottom-text">Billing</span></button>
+
+    <button
+        class="bottom-item"
+        onclick="mobileNavigation(this)"
+    >
+
+        <span class="bottom-icon">
+            ⚙
+        </span>
+
+        <span class="bottom-text">
+            More
+        </span>
+
+    </button>
+
+
+</nav>
+
+
+</div>
+
+
+
+
+<script>
+function toggleMenu(){document.getElementById("sidebar").classList.toggle("open");}
+
+function showPage(page){
+    const pages=["dashboard","patients","appointments","treatment","records","billing","reports"];
+    pages.forEach(name=>{const e=document.getElementById(name+"Page");if(e)e.classList.toggle("hidden",page!==name);});
+    if(page==="patients") renderPatients();
+    if(page==="appointments"){populateAppointmentPatients();renderAppointments();}
+    if(page==="treatment"){populateTreatmentPatients();renderTreatments();}
+    if(page==="records"){populateRecordPatients();renderRecords();}
+    if(page==="billing"){populateBillingPatients();renderBilling();}
+    if(page==="reports"){renderReports();}
+    document.getElementById("sidebar").classList.remove("open");
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+function selectMenu(button){
+    document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));
+    button.classList.add("active");
+    const label=button.textContent.trim();
+    if(label.includes("Dashboard")) showPage("dashboard");
+    else if(label.includes("Patients")) showPage("patients");
+    else if(label.includes("Appointments")) showPage("appointments");
+    else if(label.includes("Treatment")) showPage("treatment");
+    else if(label.includes("Records")) showPage("records");
+    else if(label.includes("Billing")) showPage("billing");
+    else if(label.includes("Reports")) showPage("reports");
+    else {showPage("dashboard");alert(label+" module will be added next.");}
+}
+function activateSidebar(label){document.querySelectorAll(".nav-item").forEach(i=>i.classList.toggle("active",i.textContent.trim().includes(label)));}
+function setFilter(button){document.querySelectorAll(".filter").forEach(i=>i.classList.remove("active"));button.classList.add("active");}
+
+const PATIENT_STORAGE_KEY="drMeghaPatients";
+function getPatients(){try{const s=localStorage.getItem(PATIENT_STORAGE_KEY);return s?JSON.parse(s):[];}catch(e){return[];}}
+function savePatients(p){localStorage.setItem(PATIENT_STORAGE_KEY,JSON.stringify(p));}
+function todayISO(){const d=new Date(),o=d.getTimezoneOffset();return new Date(d.getTime()-o*60000).toISOString().split("T")[0];}
+function formatDate(v){if(!v)return"—";const p=v.split("-");if(p.length!==3)return v;return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});}
+function initials(n){const w=String(n||"").trim().split(/\s+/).filter(Boolean);return w.length?w.slice(0,2).map(x=>x[0].toUpperCase()).join(""):"PT";}
+function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+function nextPatientId(){let m=0;getPatients().forEach(p=>{const x=String(p.id||"").match(/(\d+)$/);if(x)m=Math.max(m,+x[1]);});return"PT-"+String(m+1).padStart(4,"0");}
+function seedPatients(){
+    if(getPatients().length)return;
+    savePatients([
+        {id:"PT-0001",name:"Arjun Sharma",phone:"9876543210",age:"34",gender:"Male",dob:"",complaint:"Pain in lower right tooth.",treatment:"Root Canal Treatment · Tooth 46",history:"No significant history.",allergies:"None",notes:"Follow-up required.",lastVisit:todayISO(),status:"Active"},
+        {id:"PT-0002",name:"Priya Kapoor",phone:"9812345678",age:"29",gender:"Female",dob:"",complaint:"Routine dental consultation.",treatment:"Dental Consultation",history:"No significant history.",allergies:"None",notes:"",lastVisit:todayISO(),status:"Active"},
+        {id:"PT-0003",name:"Rahul Singh",phone:"9898765432",age:"41",gender:"Male",dob:"",complaint:"Persistent pain after previous RCT.",treatment:"Re-RCT · Tooth 36",history:"Previous root canal treatment.",allergies:"None",notes:"Review radiograph at next visit.",lastVisit:todayISO(),status:"Active"}
+    ]);
+}
+
+function renderPatients(){
+    const tbody=document.getElementById("patientTableBody");if(!tbody)return;
+    const q=(document.getElementById("patientSearch")?.value||"").toLowerCase().trim();
+    const filtered=getPatients().filter(p=>[p.id,p.name,p.phone,p.treatment,p.complaint].join(" ").toLowerCase().includes(q));
+    document.getElementById("patientCount").textContent=filtered.length;
+    if(!filtered.length){tbody.innerHTML='<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">👥</div><strong>No patients found</strong><span>Try another search or add a new patient.</span></div></td></tr>';return;}
+    tbody.innerHTML=filtered.map(p=>`<tr><td><div class="patient-main"><div class="patient-row-avatar">${escapeHtml(initials(p.name))}</div><div><div class="patient-row-name">${escapeHtml(p.name)}</div><div class="patient-row-id">${escapeHtml(p.id)}</div></div></div></td><td>${escapeHtml(p.phone||"—")}</td><td>${escapeHtml(p.age||"—")} / ${escapeHtml(p.gender||"—")}</td><td class="patient-treatment">${escapeHtml(p.treatment||"Not added")}</td><td>${escapeHtml(formatDate(p.lastVisit))}</td><td><span class="patient-status">${escapeHtml(p.status||"Active")}</span></td><td><div class="row-actions"><button class="small-btn" onclick="viewPatient('${p.id}')">View</button><button class="small-btn" onclick="editPatient('${p.id}')">Edit</button><button class="small-btn delete" onclick="deletePatient('${p.id}')">Delete</button></div></td></tr>`).join("");
+}
+function openPatientModal(id){
+    const f=document.getElementById("patientForm");f.reset();
+    document.getElementById("patientEditId").value="";
+    document.getElementById("patientModalTitle").textContent="Add New Patient";
+    document.getElementById("patientSaveButton").textContent="Save Patient";
+    document.getElementById("patientIdDisplay").value=nextPatientId();
+    document.getElementById("patientLastVisit").value=todayISO();
+    if(id){const p=getPatients().find(x=>x.id===id);if(!p)return;document.getElementById("patientModalTitle").textContent="Edit Patient";document.getElementById("patientSaveButton").textContent="Update Patient";document.getElementById("patientEditId").value=p.id;document.getElementById("patientIdDisplay").value=p.id;document.getElementById("patientName").value=p.name||"";document.getElementById("patientPhone").value=p.phone||"";document.getElementById("patientAge").value=p.age||"";document.getElementById("patientGender").value=p.gender||"";document.getElementById("patientDob").value=p.dob||"";document.getElementById("patientLastVisit").value=p.lastVisit||"";document.getElementById("patientStatus").value=p.status||"Active";document.getElementById("patientComplaint").value=p.complaint||"";document.getElementById("patientTreatment").value=p.treatment||"";document.getElementById("patientHistory").value=p.history||"";document.getElementById("patientAllergies").value=p.allergies||"";document.getElementById("patientNotes").value=p.notes||"";}
+    document.getElementById("patientModal").classList.add("show");
+}
+function closePatientModal(){document.getElementById("patientModal").classList.remove("show");}
+function savePatient(e){e.preventDefault();const edit=document.getElementById("patientEditId").value.trim(),a=getPatients(),d={id:document.getElementById("patientIdDisplay").value.trim(),name:document.getElementById("patientName").value.trim(),phone:document.getElementById("patientPhone").value.trim(),age:document.getElementById("patientAge").value.trim(),gender:document.getElementById("patientGender").value,dob:document.getElementById("patientDob").value,lastVisit:document.getElementById("patientLastVisit").value,status:document.getElementById("patientStatus").value,complaint:document.getElementById("patientComplaint").value.trim(),treatment:document.getElementById("patientTreatment").value.trim(),history:document.getElementById("patientHistory").value.trim(),allergies:document.getElementById("patientAllergies").value.trim(),notes:document.getElementById("patientNotes").value.trim()};if(!d.name||!d.phone){alert("Please enter the patient's name and phone number.");return;}if(edit){const i=a.findIndex(x=>x.id===edit);if(i!==-1)a[i]={...a[i],...d};}else{d.createdAt=new Date().toISOString();a.unshift(d);}savePatients(a);closePatientModal();renderPatients();updateDashboardPatientCount();populateAppointmentPatients();alert(edit?"Patient updated successfully.":"Patient added successfully.");}
+function editPatient(id){openPatientModal(id);}
+function viewPatient(id){const p=getPatients().find(x=>x.id===id);if(!p)return;document.getElementById("patientDetailsContent").innerHTML=`<div class="detail-profile"><div class="detail-avatar">${escapeHtml(initials(p.name))}</div><div><h4>${escapeHtml(p.name)}</h4><p>${escapeHtml(p.id)} · ${escapeHtml(p.status||"Active")}</p></div></div><div class="detail-grid"><div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value">${escapeHtml(p.phone||"—")}</div></div><div class="detail-item"><div class="detail-label">Age / Gender</div><div class="detail-value">${escapeHtml(p.age||"—")} / ${escapeHtml(p.gender||"—")}</div></div><div class="detail-item"><div class="detail-label">Date of Birth</div><div class="detail-value">${escapeHtml(formatDate(p.dob))}</div></div><div class="detail-item"><div class="detail-label">Last Visit</div><div class="detail-value">${escapeHtml(formatDate(p.lastVisit))}</div></div><div class="detail-item full"><div class="detail-label">Treatment / Procedure</div><div class="detail-value">${escapeHtml(p.treatment||"Not added")}</div></div><div class="detail-item full"><div class="detail-label">Chief Complaint</div><div class="detail-value">${escapeHtml(p.complaint||"Not added")}</div></div><div class="detail-item full"><div class="detail-label">Medical History</div><div class="detail-value">${escapeHtml(p.history||"Not added")}</div></div><div class="detail-item full"><div class="detail-label">Allergies</div><div class="detail-value">${escapeHtml(p.allergies||"None recorded")}</div></div><div class="detail-item full"><div class="detail-label">Notes</div><div class="detail-value">${escapeHtml(p.notes||"No additional notes")}</div></div></div>`;document.getElementById("patientDetailsModal").classList.add("show");}
+function closePatientDetails(){document.getElementById("patientDetailsModal").classList.remove("show");}
+function deletePatient(id){const p=getPatients().find(x=>x.id===id);if(!p)return;if(!confirm("Delete patient "+p.name+" ("+p.id+")?"))return;savePatients(getPatients().filter(x=>x.id!==id));renderPatients();renderAppointments();updateDashboardPatientCount();populateAppointmentPatients();}
+
+const APPOINTMENT_STORAGE_KEY="drMeghaAppointments";
+function getAppointments(){try{const s=localStorage.getItem(APPOINTMENT_STORAGE_KEY);return s?JSON.parse(s):[];}catch(e){return[];}}
+function saveAppointments(a){localStorage.setItem(APPOINTMENT_STORAGE_KEY,JSON.stringify(a));}
+function appointmentId(){let m=0;getAppointments().forEach(a=>{const x=String(a.id||"").match(/(\d+)$/);if(x)m=Math.max(m,+x[1]);});return"AP-"+String(m+1).padStart(4,"0");}
+function getPatientById(id){return getPatients().find(p=>p.id===id);}
+function timeLabel(t){if(!t)return"—";const p=t.split(":");let h=+p[0];const min=p[1]||"00",s=h>=12?"PM":"AM";h=h%12||12;return h+":"+min+" "+s;}
+function statusClass(s){return String(s||"").toLowerCase().replace(/[^a-z]+/g,"");}
+function seedAppointments(){
+    if(getAppointments().length)return;
+    const p=getPatients(),find=n=>p.find(x=>x.name===n);
+    saveAppointments([
+        {id:"AP-0001",patientId:(find("Arjun Sharma")||{}).id||"PT-0001",date:todayISO(),time:"10:00",treatment:"Root Canal Treatment · Tooth 46",status:"In-Chair",duration:"60 minutes",notes:"Patient arrived for scheduled treatment."},
+        {id:"AP-0002",patientId:(find("Priya Kapoor")||{}).id||"PT-0002",date:todayISO(),time:"11:30",treatment:"Dental Consultation",status:"Scheduled",duration:"30 minutes",notes:"Initial consultation."},
+        {id:"AP-0003",patientId:(find("Rahul Singh")||{}).id||"PT-0003",date:todayISO(),time:"12:30",treatment:"Re-RCT · Tooth 36",status:"Scheduled",duration:"90 minutes",notes:"Review previous treatment records."}
+    ]);
+}
+function populateAppointmentPatients(){const s=document.getElementById("appointmentPatient");if(!s)return;const p=getPatients();s.innerHTML=p.length?'<option value="">Select patient</option>'+p.map(x=>`<option value="${escapeHtml(x.id)}">${escapeHtml(x.name)} · ${escapeHtml(x.id)}</option>`).join(""):'<option value="">No patients available — add a patient first</option>';}
+function updateAppointmentSummary(){const a=getAppointments(),t=todayISO();document.getElementById("apptTodayCount").textContent=a.filter(x=>x.date===t&&x.status!=="Cancelled").length;document.getElementById("apptScheduledCount").textContent=a.filter(x=>x.status==="Scheduled").length;document.getElementById("apptCompletedCount").textContent=a.filter(x=>x.status==="Completed").length;document.getElementById("apptCancelledCount").textContent=a.filter(x=>x.status==="Cancelled").length;}
+function renderAppointments(){
+    const list=document.getElementById("appointmentList");if(!list)return;
+    const q=(document.getElementById("appointmentSearch")?.value||"").toLowerCase().trim(),df=document.getElementById("appointmentDateFilter")?.value||"",sf=document.getElementById("appointmentStatusFilter")?.value||"All";
+    let a=getAppointments().filter(x=>{const p=getPatientById(x.patientId),n=p?p.name:"Unknown Patient",s=[n,x.id,x.treatment,x.notes].join(" ").toLowerCase();return s.includes(q)&&(!df||x.date===df)&&(sf==="All"||x.status===sf);});
+    a.sort((x,y)=>(x.date+" "+x.time).localeCompare(y.date+" "+y.time));updateAppointmentSummary();
+    if(!a.length){list.innerHTML='<div class="appt-empty"><div class="appt-empty-icon">📅</div><strong>No appointments found</strong><span>Try another filter or create a new appointment.</span></div>';return;}
+    list.innerHTML=a.map(x=>{const p=getPatientById(x.patientId),n=p?p.name:"Unknown Patient";return `<div class="appt-card"><div class="appt-time-box"><div class="appt-time">${escapeHtml(timeLabel(x.time))}</div><div class="appt-date-small">${escapeHtml(formatDate(x.date))}</div></div><div class="appt-person"><div class="appt-avatar">${escapeHtml(initials(n))}</div><div><div class="appt-patient-name">${escapeHtml(n)}</div><div class="appt-info">${escapeHtml(x.treatment)} · ${escapeHtml(x.duration||"")}</div></div></div><span class="appt-status ${statusClass(x.status)}">${escapeHtml(x.status)}</span><div class="appt-actions"><button class="small-btn" onclick="viewAppointment('${x.id}')">View</button><button class="small-btn" onclick="editAppointment('${x.id}')">Edit</button><button class="small-btn delete" onclick="deleteAppointment('${x.id}')">Delete</button></div></div>`;}).join("");
+}
+function openAppointmentModal(id){
+    document.getElementById("appointmentForm").reset();
+    document.getElementById("appointmentEditId").value="";
+    document.getElementById("appointmentModalTitle").textContent="New Appointment";
+    document.getElementById("appointmentSaveButton").textContent="Save Appointment";
+    document.getElementById("appointmentDate").value=todayISO();
+    document.getElementById("appointmentStatus").value="Scheduled";
+    document.getElementById("appointmentDuration").value="30 minutes";
+    populateAppointmentPatients();
+    if(id){const a=getAppointments().find(x=>x.id===id);if(!a)return;document.getElementById("appointmentModalTitle").textContent="Edit Appointment";document.getElementById("appointmentSaveButton").textContent="Update Appointment";document.getElementById("appointmentEditId").value=a.id;document.getElementById("appointmentPatient").value=a.patientId||"";document.getElementById("appointmentDate").value=a.date||todayISO();document.getElementById("appointmentTime").value=a.time||"";document.getElementById("appointmentTreatment").value=a.treatment||"";document.getElementById("appointmentStatus").value=a.status||"Scheduled";document.getElementById("appointmentDuration").value=a.duration||"30 minutes";document.getElementById("appointmentNotes").value=a.notes||"";}
+    document.getElementById("appointmentModal").classList.add("show");
+}
+function closeAppointmentModal(){document.getElementById("appointmentModal").classList.remove("show");}
+function saveAppointment(e){
+    e.preventDefault();
+    if(!getPatients().length){alert("Please add a patient first.");return;}
+    const edit=document.getElementById("appointmentEditId").value.trim(),a=getAppointments(),d={id:edit||appointmentId(),patientId:document.getElementById("appointmentPatient").value,date:document.getElementById("appointmentDate").value,time:document.getElementById("appointmentTime").value,treatment:document.getElementById("appointmentTreatment").value.trim(),status:document.getElementById("appointmentStatus").value,duration:document.getElementById("appointmentDuration").value,notes:document.getElementById("appointmentNotes").value.trim()};
+    if(!d.patientId||!d.date||!d.time||!d.treatment){alert("Please fill in patient, date, time and treatment.");return;}
+    if(edit){const i=a.findIndex(x=>x.id===edit);if(i!==-1)a[i]={...a[i],...d};}else{d.createdAt=new Date().toISOString();a.push(d);}
+    saveAppointments(a);closeAppointmentModal();renderAppointments();alert(edit?"Appointment updated successfully.":"Appointment created successfully.");
+}
+function editAppointment(id){openAppointmentModal(id);}
+function viewAppointment(id){
+    const a=getAppointments().find(x=>x.id===id);if(!a)return;const p=getPatientById(a.patientId),n=p?p.name:"Unknown Patient";
+    document.getElementById("appointmentDetailsContent").innerHTML=`<div class="detail-profile"><div class="detail-avatar">${escapeHtml(initials(n))}</div><div><h4>${escapeHtml(n)}</h4><p>${escapeHtml(a.id)} · ${escapeHtml(a.status)}</p></div></div><div class="detail-grid"><div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">${escapeHtml(formatDate(a.date))}</div></div><div class="detail-item"><div class="detail-label">Time</div><div class="detail-value">${escapeHtml(timeLabel(a.time))}</div></div><div class="detail-item"><div class="detail-label">Patient ID</div><div class="detail-value">${escapeHtml(a.patientId||"—")}</div></div><div class="detail-item"><div class="detail-label">Duration</div><div class="detail-value">${escapeHtml(a.duration||"—")}</div></div><div class="detail-item full"><div class="detail-label">Treatment / Procedure</div><div class="detail-value">${escapeHtml(a.treatment)}</div></div><div class="detail-item full"><div class="detail-label">Notes</div><div class="detail-value">${escapeHtml(a.notes||"No notes added")}</div></div></div>`;
+    document.getElementById("appointmentDetailsModal").classList.add("show");
+}
+function closeAppointmentDetails(){document.getElementById("appointmentDetailsModal").classList.remove("show");}
+function deleteAppointment(id){if(!confirm("Delete this appointment?"))return;saveAppointments(getAppointments().filter(x=>x.id!==id));renderAppointments();}
+
+function quickAction(type){
+    if(type==="patient"){activateSidebar("Patients");showPage("patients");openPatientModal();return;}
+    if(type==="appointment"){activateSidebar("Appointments");showPage("appointments");openAppointmentModal();return;}
+    if(type==="treatment"){activateSidebar("Treatment");showPage("treatment");openTreatmentModal();return;}
+    if(type==="xray"){activateSidebar("Records");showPage("records");openRecordModal();return;}
+}
+function viewAppointments(){activateSidebar("Appointments");showPage("appointments");}
+function mobileNavigation(button){
+    document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");
+    const l=button.textContent.trim();
+    if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}
+    else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}
+    else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}
+    else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}
+    else if(l.includes("Billing")){activateSidebar("Billing");showPage("billing");}
+    else if(l.includes("More")){activateSidebar("Reports");showPage("reports");}
+}
+function updateDashboardPatientCount(){const n=getPatients().length,e=document.querySelector(".stat-card .stat-number");if(e)e.textContent=String(n).padStart(2,"0");}
+
+document.getElementById("patientModal").addEventListener("click",function(e){if(e.target===this)closePatientModal();});
+document.getElementById("patientDetailsModal").addEventListener("click",function(e){if(e.target===this)closePatientDetails();});
+document.getElementById("appointmentModal").addEventListener("click",function(e){if(e.target===this)closeAppointmentModal();});
+document.getElementById("appointmentDetailsModal").addEventListener("click",function(e){if(e.target===this)closeAppointmentDetails();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closePatientModal();closePatientDetails();closeAppointmentModal();closeAppointmentDetails();}});
+
+seedPatients();
+seedAppointments();
+renderPatients();
+updateDashboardPatientCount();
+renderAppointments();
+showPage("dashboard");
+
+
+/* =========================================================
+   TREATMENT MODULE — STEPS 1–6
+========================================================= */
+const TREATMENT_STORAGE_KEY="drMeghaTreatments";
+function getTreatments(){try{const s=localStorage.getItem(TREATMENT_STORAGE_KEY);return s?JSON.parse(s):[];}catch(e){return[];}}
+function saveTreatments(v){localStorage.setItem(TREATMENT_STORAGE_KEY,JSON.stringify(v));}
+function treatmentId(){let m=0;getTreatments().forEach(t=>{const x=String(t.id||"").match(/(\d+)$/);if(x)m=Math.max(m,+x[1]);});return "TR-"+String(m+1).padStart(4,"0");}
+function treatmentStatusClass(v){return String(v||"").toLowerCase().replace(/\s+/g,"").replace(/-/g,"");}
+function treatmentStatusLabel(v){return v||"Planned";}
+function populateTreatmentPatients(selected){
+  const el=document.getElementById("treatmentPatient"); if(!el)return;
+  const ps=getPatients(); el.innerHTML='<option value="">Select patient</option>'+ps.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)} · ${escapeHtml(p.id)}</option>`).join("");
+  if(selected)el.value=selected;
+}
+function seedTreatments(){
+  if(getTreatments().length)return;
+  const ps=getPatients(); if(ps.length<2)return;
+  const d=todayISO();
+  saveTreatments([
+    {id:"TR-0001",patientId:ps[0].id,tooth:"46",procedure:"Root Canal Treatment",diagnosis:"Irreversible pulpitis",stage:"Procedure",status:"In Progress",startDate:d,nextDate:d,fee:"8500",notes:"Working length completed. Review at next visit.",createdAt:new Date().toISOString()},
+    {id:"TR-0002",patientId:ps[1].id,tooth:"11",procedure:"Veneers",diagnosis:"Aesthetic correction",stage:"Consultation",status:"Planned",startDate:d,nextDate:d,fee:"12000",notes:"Shade discussion and smile assessment planned.",createdAt:new Date().toISOString()},
+    {id:"TR-0003",patientId:ps[2]?.id||ps[0].id,tooth:"36",procedure:"Re-RCT",diagnosis:"Persistent periapical symptoms",stage:"Follow-up",status:"Completed",startDate:d,nextDate:"",fee:"9000",notes:"Treatment completed. Continue routine review.",createdAt:new Date().toISOString()}
+  ]);
+}
+function updateTreatmentSummary(){
+  const a=getTreatments(),active=a.filter(x=>x.status==="In Progress").length,planned=a.filter(x=>x.status==="Planned").length,completed=a.filter(x=>x.status==="Completed").length,follow=a.filter(x=>x.nextDate&&x.nextDate>=todayISO()&&x.status!=="Completed").length;
+  const set=(id,n)=>{const e=document.getElementById(id);if(e)e.textContent=n;}; set("treatActiveCount",active);set("treatPlannedCount",planned);set("treatCompletedCount",completed);set("treatFollowupCount",follow);
+  const stats=document.querySelectorAll(".stat-card .stat-number"); if(stats[2])stats[2].textContent=String(active).padStart(2,"0");
+}
+function renderTreatments(){
+  const list=document.getElementById("treatmentList");if(!list)return;
+  const q=(document.getElementById("treatmentSearch")?.value||"").toLowerCase().trim(),sf=document.getElementById("treatmentStatusFilter")?.value||"All",tf=document.getElementById("treatmentTypeFilter")?.value||"All";
+  const arr=getTreatments().filter(t=>{const p=getPatientById(t.patientId),n=p?p.name:"Unknown Patient",hay=[n,t.id,t.tooth,t.procedure,t.diagnosis,t.stage,t.status,t.notes].join(" ").toLowerCase();return (!q||hay.includes(q))&&(sf==="All"||t.status===sf)&&(tf==="All"||t.procedure===tf);}).sort((a,b)=>String(b.startDate||"").localeCompare(String(a.startDate||"")));
+  updateTreatmentSummary();
+  if(!arr.length){list.innerHTML='<div class="treatment-empty"><strong>No treatments found</strong><span>Create a new treatment plan or change your search/filter.</span></div>';return;}
+  list.innerHTML=arr.map(t=>{const p=getPatientById(t.patientId),name=p?p.name:"Unknown Patient";return `<div class="treatment-card"><div class="treatment-card-top"><div class="treatment-avatar">${escapeHtml(initials(name))}</div><div class="treatment-patient"><strong>${escapeHtml(name)}</strong><small>${escapeHtml(t.id)} · ${escapeHtml(t.procedure)}${t.tooth?" · Tooth "+escapeHtml(t.tooth):""}</small></div><span class="treatment-status ${treatmentStatusClass(t.status)}">${escapeHtml(t.status)}</span></div><div class="treatment-meta"><div class="treat-meta-item"><span>Tooth</span><strong>${escapeHtml(t.tooth||"—")}</strong></div><div class="treat-meta-item"><span>Stage</span><strong>${escapeHtml(t.stage||"—")}</strong></div><div class="treat-meta-item"><span>Start Date</span><strong>${escapeHtml(formatDate(t.startDate))}</strong></div><div class="treat-meta-item"><span>Next Visit</span><strong>${escapeHtml(formatDate(t.nextDate))}</strong></div></div>${t.notes?`<div class="treatment-notes">📝 ${escapeHtml(t.notes)}</div>`:""}<div class="treatment-actions"><button class="treatment-action" onclick="viewTreatment('${escapeHtml(t.id)}')">View</button><button class="treatment-action" onclick="openTreatmentModal('${escapeHtml(t.id)}')">Edit</button><button class="treatment-action" onclick="deleteTreatment('${escapeHtml(t.id)}')">Delete</button></div></div>`;}).join("");
+}
+function openTreatmentModal(id){
+  populateTreatmentPatients(); const form=document.getElementById("treatmentForm");form.reset();document.getElementById("treatmentEditId").value="";document.getElementById("treatmentStartDate").value=todayISO();document.getElementById("treatmentStatus").value="Planned";document.getElementById("treatmentModalTitle").textContent="Add New Treatment";document.getElementById("treatmentSaveButton").textContent="Save Treatment";
+  if(id){const t=getTreatments().find(x=>x.id===id);if(!t)return;document.getElementById("treatmentModalTitle").textContent="Edit Treatment";document.getElementById("treatmentSaveButton").textContent="Update Treatment";document.getElementById("treatmentEditId").value=t.id;document.getElementById("treatmentPatient").value=t.patientId||"";document.getElementById("treatmentTooth").value=t.tooth||"";document.getElementById("treatmentProcedure").value=t.procedure||"";document.getElementById("treatmentDiagnosis").value=t.diagnosis||"";document.getElementById("treatmentStage").value=t.stage||"Consultation";document.getElementById("treatmentStatus").value=t.status||"Planned";document.getElementById("treatmentStartDate").value=t.startDate||todayISO();document.getElementById("treatmentNextDate").value=t.nextDate||"";document.getElementById("treatmentFee").value=t.fee||"";document.getElementById("treatmentNotes").value=t.notes||"";}
+  document.getElementById("treatmentModal").classList.add("show");
+}
+function closeTreatmentModal(){document.getElementById("treatmentModal")?.classList.remove("show");}
+function saveTreatment(e){
+  e.preventDefault(); if(!getPatients().length){alert("Please add a patient first.");return;}
+  const edit=document.getElementById("treatmentEditId").value.trim(),a=getTreatments(),d={id:edit||treatmentId(),patientId:document.getElementById("treatmentPatient").value,tooth:document.getElementById("treatmentTooth").value.trim(),procedure:document.getElementById("treatmentProcedure").value,diagnosis:document.getElementById("treatmentDiagnosis").value.trim(),stage:document.getElementById("treatmentStage").value,status:document.getElementById("treatmentStatus").value,startDate:document.getElementById("treatmentStartDate").value,nextDate:document.getElementById("treatmentNextDate").value,fee:document.getElementById("treatmentFee").value,notes:document.getElementById("treatmentNotes").value.trim()};
+  if(!d.patientId||!d.procedure){alert("Please select a patient and procedure.");return;} if(edit){const i=a.findIndex(x=>x.id===edit);if(i!==-1)a[i]={...a[i],...d};}else{d.createdAt=new Date().toISOString();a.push(d);} saveTreatments(a);closeTreatmentModal();renderTreatments();updateTreatmentSummary();alert(edit?"Treatment updated successfully.":"Treatment created successfully.");
+}
+function viewTreatment(id){const t=getTreatments().find(x=>x.id===id);if(!t)return;const p=getPatientById(t.patientId),name=p?p.name:"Unknown Patient";document.getElementById("treatmentDetailsContent").innerHTML=`<div class="detail-profile"><div class="detail-avatar">${escapeHtml(initials(name))}</div><div><h4>${escapeHtml(name)}</h4><p>${escapeHtml(t.id)} · ${escapeHtml(t.status)}</p></div></div><div class="treatment-detail-grid"><div class="treatment-detail-item"><div class="treatment-detail-label">Patient ID</div><div class="treatment-detail-value">${escapeHtml(t.patientId||"—")}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Tooth Number</div><div class="treatment-detail-value">${escapeHtml(t.tooth||"—")}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Procedure</div><div class="treatment-detail-value">${escapeHtml(t.procedure)}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Stage</div><div class="treatment-detail-value">${escapeHtml(t.stage||"—")}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Start Date</div><div class="treatment-detail-value">${escapeHtml(formatDate(t.startDate))}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Next Visit</div><div class="treatment-detail-value">${escapeHtml(formatDate(t.nextDate))}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Estimated Fee</div><div class="treatment-detail-value">${t.fee?"₹"+escapeHtml(Number(t.fee).toLocaleString("en-IN")):"—"}</div></div><div class="treatment-detail-item"><div class="treatment-detail-label">Diagnosis</div><div class="treatment-detail-value">${escapeHtml(t.diagnosis||"—")}</div></div><div class="treatment-detail-item treatment-detail-full"><div class="treatment-detail-label">Clinical Notes</div><div class="treatment-detail-value">${escapeHtml(t.notes||"No notes added")}</div></div></div>`;document.getElementById("treatmentDetailsModal").classList.add("show");}
+function closeTreatmentDetails(){document.getElementById("treatmentDetailsModal")?.classList.remove("show");}
+function deleteTreatment(id){const t=getTreatments().find(x=>x.id===id);if(!t)return;if(!confirm("Delete treatment "+t.id+"?"))return;saveTreatments(getTreatments().filter(x=>x.id!==id));renderTreatments();}
+
+/* Override navigation to include Treatment */
+function showPage(page){
+  ["dashboardPage","patientsPage","appointmentsPage","treatmentPage"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle("hidden",id!==page+"Page");});
+  if(page==="patients")renderPatients();
+  if(page==="appointments"){populateAppointmentPatients();renderAppointments();}
+  if(page==="treatment"){populateTreatmentPatients();renderTreatments();}
+  document.getElementById("sidebar")?.classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});
+}
+function selectMenu(button){document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const label=button.textContent.trim();if(label.includes("Dashboard"))showPage("dashboard");else if(label.includes("Patients"))showPage("patients");else if(label.includes("Appointments"))showPage("appointments");else if(label.includes("Treatment"))showPage("treatment");else{showPage("dashboard");alert(label+" module will be added next.");}}
+function quickAction(type){if(type==="patient"){activateSidebar("Patients");showPage("patients");openPatientModal();return;}if(type==="appointment"){activateSidebar("Appointments");showPage("appointments");openAppointmentModal();return;}if(type==="treatment"){activateSidebar("Treatment");showPage("treatment");openTreatmentModal();return;}if(type==="xray"){alert("Records & X-Ray module will be added next.");}}
+function mobileNavigation(button){document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const l=button.textContent.trim();if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}else alert(l+" module will be added next.");}
+
+document.getElementById("treatmentModal")?.addEventListener("click",function(e){if(e.target===this)closeTreatmentModal();});
+document.getElementById("treatmentDetailsModal")?.addEventListener("click",function(e){if(e.target===this)closeTreatmentDetails();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeTreatmentModal();closeTreatmentDetails();}});
+
+seedTreatments();
+renderTreatments();
+updateTreatmentSummary();
+
+
+</script>
+
+
+
+
+<script>
+/* =========================================================
+   RECORDS & X-RAY MODULE
+========================================================= */
+const RECORD_STORAGE_KEY = "drMeghaRecordsV1";
+const RECORD_DB_NAME = "drMeghaRecordsDB";
+const RECORD_DB_VERSION = 1;
+const RECORD_STORE = "attachments";
+let recordObjectUrl = null;
+
+function getRecords(){
+  try{return JSON.parse(localStorage.getItem(RECORD_STORAGE_KEY)||"[]")||[];}catch(e){return[];}
+}
+function saveRecords(arr){localStorage.setItem(RECORD_STORAGE_KEY,JSON.stringify(arr));}
+function recordId(){let m=0;getRecords().forEach(r=>{const x=String(r.id||"").match(/(\d+)$/);if(x)m=Math.max(m,+x[1]);});return "REC-"+String(m+1).padStart(4,"0");}
+function recordTypeClass(v){return ({"X-Ray":"xray","Clinical Record":"clinical","Document":"document","Prescription":"prescription","Other":"other"}[v]||"other");}
+function formatFileSize(bytes){if(!bytes)return "—";if(bytes<1024)return bytes+" B";if(bytes<1024*1024)return (bytes/1024).toFixed(1)+" KB";return (bytes/1024/1024).toFixed(1)+" MB";}
+function escapeRecord(v){return typeof escapeHtml==='function'?escapeHtml(v):String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+
+function openRecordDB(){
+  return new Promise((resolve,reject)=>{
+    if(!window.indexedDB){reject(new Error("IndexedDB is not supported in this browser."));return;}
+    const req=indexedDB.open(RECORD_DB_NAME,RECORD_DB_VERSION);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(RECORD_STORE))db.createObjectStore(RECORD_STORE,{keyPath:"id"});};
+    req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error("Unable to open local file storage."));
+  });
+}
+function putRecordFile(id,file){
+  return openRecordDB().then(db=>new Promise((resolve,reject)=>{const tx=db.transaction(RECORD_STORE,"readwrite");tx.objectStore(RECORD_STORE).put({id,blob:file,fileName:file.name,fileType:file.type,fileSize:file.size});tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error||new Error("Unable to save file."));};}));
+}
+function getRecordFile(id){
+  return openRecordDB().then(db=>new Promise((resolve,reject)=>{const tx=db.transaction(RECORD_STORE,"readonly");const req=tx.objectStore(RECORD_STORE).get(id);req.onsuccess=()=>{const v=req.result;db.close();resolve(v||null);};req.onerror=()=>{db.close();reject(req.error);};}));
+}
+function deleteRecordFile(id){
+  return openRecordDB().then(db=>new Promise((resolve,reject)=>{const tx=db.transaction(RECORD_STORE,"readwrite");tx.objectStore(RECORD_STORE).delete(id);tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error);};}));
+}
+
+function populateRecordPatients(){
+  const select=document.getElementById("recordPatient");if(select){const current=select.value;select.innerHTML='<option value="">Select patient</option>'+getPatients().map(p=>`<option value="${escapeRecord(p.id)}">${escapeRecord(p.name)} · ${escapeRecord(p.id)}</option>`).join("");if(current)select.value=current;}
+  const filter=document.getElementById("recordPatientFilter");if(filter){const current=filter.value;filter.innerHTML='<option value="All">All Patients</option>'+getPatients().map(p=>`<option value="${escapeRecord(p.id)}">${escapeRecord(p.name)} · ${escapeRecord(p.id)}</option>`).join("");if(current)filter.value=current;}
+}
+function updateRecordFileHint(){
+  const type=document.getElementById("recordType")?.value||"X-Ray",hint=document.getElementById("recordFileHint");if(!hint)return;
+  hint.textContent=type==="X-Ray"?"Attach an X-ray image or PDF. Files are stored locally in this browser.":"Attach an image, PDF or document. Files are stored locally in this browser.";
+}
+function showSelectedRecordFile(input){
+  const hint=document.getElementById("recordFileHint");if(!hint)return;const f=input.files?.[0];if(!f){updateRecordFileHint();return;}hint.textContent=`Selected: ${f.name} · ${formatFileSize(f.size)}`;
+}
+function updateRecordSummary(){
+  const all=getRecords(),month=new Date().toISOString().slice(0,7);
+  document.getElementById("recordTotalCount")&&(document.getElementById("recordTotalCount").textContent=all.length);
+  document.getElementById("recordXrayCount")&&(document.getElementById("recordXrayCount").textContent=all.filter(r=>r.type==="X-Ray").length);
+  document.getElementById("recordDocumentCount")&&(document.getElementById("recordDocumentCount").textContent=all.filter(r=>r.type!=="X-Ray").length);
+  document.getElementById("recordMonthCount")&&(document.getElementById("recordMonthCount").textContent=all.filter(r=>String(r.date||"").slice(0,7)===month).length);
+}
+function renderRecords(){
+  const list=document.getElementById("recordList");if(!list)return;populateRecordPatients();
+  const q=(document.getElementById("recordSearch")?.value||"").toLowerCase().trim(),tf=document.getElementById("recordTypeFilter")?.value||"All",pf=document.getElementById("recordPatientFilter")?.value||"All";
+  const arr=getRecords().filter(r=>{const p=getPatientById(r.patientId),name=p?p.name:"Unknown Patient",hay=[name,r.id,r.type,r.title,r.tooth,r.description,r.fileName].join(" ").toLowerCase();return(!q||hay.includes(q))&&(tf==="All"||r.type===tf)&&(pf==="All"||r.patientId===pf);}).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
+  updateRecordSummary();
+  if(!arr.length){list.innerHTML='<div class="record-empty"><strong>No records found</strong><span>Add an X-ray or patient document to get started.</span></div>';return;}
+  list.innerHTML=arr.map(r=>{const p=getPatientById(r.patientId),name=p?p.name:"Unknown Patient";return `<div class="record-card"><div class="record-card-top"><div class="record-avatar">${escapeRecord(initials(name))}</div><div class="record-patient"><strong>${escapeRecord(name)}</strong><small>${escapeRecord(r.id)} · ${escapeRecord(r.title)}</small></div><span class="record-type ${recordTypeClass(r.type)}">${escapeRecord(r.type)}</span></div><div class="record-meta"><div class="record-meta-item"><span>Patient ID</span><strong>${escapeRecord(r.patientId||"—")}</strong></div><div class="record-meta-item"><span>Date</span><strong>${escapeRecord(formatDate(r.date))}</strong></div><div class="record-meta-item"><span>Tooth</span><strong>${escapeRecord(r.tooth||"—")}</strong></div><div class="record-meta-item"><span>Attachment</span><strong>${r.hasAttachment?escapeRecord(r.fileName||"Attached file"):"No file"}</strong></div></div>${r.description?`<div class="record-description">📝 ${escapeRecord(r.description)}</div>`:""}<div class="record-actions"><button class="record-action" onclick="viewRecord('${escapeRecord(r.id)}')">View</button><button class="record-action" onclick="openRecordModal('${escapeRecord(r.id)}')">Edit</button><button class="record-action" onclick="deleteRecord('${escapeRecord(r.id)}')">Delete</button></div></div>`;}).join("");
+}
+function openRecordModal(id){
+  populateRecordPatients();const form=document.getElementById("recordForm");form.reset();document.getElementById("recordEditId").value="";document.getElementById("recordDate").value=todayISO();document.getElementById("recordType").value="X-Ray";document.getElementById("recordModalTitle").textContent="Add New Record";document.getElementById("recordSaveButton").textContent="Save Record";updateRecordFileHint();
+  if(id){const r=getRecords().find(x=>x.id===id);if(!r)return;document.getElementById("recordModalTitle").textContent="Edit Record";document.getElementById("recordSaveButton").textContent="Update Record";document.getElementById("recordEditId").value=r.id;document.getElementById("recordPatient").value=r.patientId||"";document.getElementById("recordType").value=r.type||"X-Ray";document.getElementById("recordTitle").value=r.title||"";document.getElementById("recordDate").value=r.date||todayISO();document.getElementById("recordTooth").value=r.tooth||"";document.getElementById("recordDescription").value=r.description||"";updateRecordFileHint();if(r.hasAttachment)document.getElementById("recordFileHint").textContent=`Current file: ${r.fileName||"Attached file"}. Choose a new file to replace it.`;}
+  document.getElementById("recordModal").classList.add("show");
+}
+function closeRecordModal(){document.getElementById("recordModal")?.classList.remove("show");}
+async function saveRecord(e){
+  e.preventDefault();if(!getPatients().length){alert("Please add a patient first.");return;}
+  const edit=document.getElementById("recordEditId").value.trim(),arr=getRecords(),id=edit||recordId(),file=document.getElementById("recordFile").files?.[0],existing=edit?arr.find(x=>x.id===edit):null;
+  const d={id,patientId:document.getElementById("recordPatient").value,type:document.getElementById("recordType").value,title:document.getElementById("recordTitle").value.trim(),date:document.getElementById("recordDate").value,tooth:document.getElementById("recordTooth").value.trim(),description:document.getElementById("recordDescription").value.trim(),hasAttachment:existing?.hasAttachment||false,fileName:existing?.fileName||"",fileType:existing?.fileType||"",fileSize:existing?.fileSize||0,createdAt:existing?.createdAt||new Date().toISOString()};
+  if(!d.patientId||!d.title||!d.date){alert("Please select a patient, record title and date.");return;}
+  if(file){if(file.size>8*1024*1024){alert("Please choose a file smaller than 8 MB.");return;}d.hasAttachment=true;d.fileName=file.name;d.fileType=file.type||"application/octet-stream";d.fileSize=file.size;}
+  try{if(file)await putRecordFile(id,file);if(edit){const i=arr.findIndex(x=>x.id===edit);if(i!==-1)arr[i]=d;}else arr.push(d);saveRecords(arr);closeRecordModal();renderRecords();alert(edit?"Record updated successfully.":"Record created successfully.");}catch(err){console.error(err);alert("The record details were saved, but the file could not be stored in this browser. Please try again with a smaller file.");}
+}
+async function viewRecord(id){
+  const r=getRecords().find(x=>x.id===id);if(!r)return;const p=getPatientById(r.patientId),name=p?p.name:"Unknown Patient";
+  if(recordObjectUrl){URL.revokeObjectURL(recordObjectUrl);recordObjectUrl=null;}
+  let attachmentHtml='<div class="record-preview"><div class="record-file-box"><div class="record-file-icon">📄</div><div class="record-file-name">No attachment</div><div class="record-file-meta">This record has no file attached.</div></div></div>';
+  if(r.hasAttachment){try{const f=await getRecordFile(r.id);if(f?.blob){recordObjectUrl=URL.createObjectURL(f.blob);if(String(r.fileType||"").startsWith("image/")){attachmentHtml=`<div class="record-preview"><img src="${recordObjectUrl}" alt="${escapeRecord(r.title)}"><div class="record-file-box"><div class="record-file-name">${escapeRecord(r.fileName)}</div><div class="record-file-meta">${escapeRecord(formatFileSize(r.fileSize))}</div><a class="record-open-file" href="${recordObjectUrl}" target="_blank" rel="noopener">Open Full Image</a></div></div>`;}else{attachmentHtml=`<div class="record-preview"><div class="record-file-box"><div class="record-file-icon">${r.fileType==="application/pdf"?"📕":"📄"}</div><div class="record-file-name">${escapeRecord(r.fileName)}</div><div class="record-file-meta">${escapeRecord(formatFileSize(r.fileSize))}</div><a class="record-open-file" href="${recordObjectUrl}" target="_blank" rel="noopener">Open File</a></div></div>`;}}}catch(err){attachmentHtml='<div class="record-preview"><div class="record-file-box"><div class="record-file-icon">⚠️</div><div class="record-file-name">Attachment unavailable</div><div class="record-file-meta">The local file could not be opened.</div></div></div>';}}
+  document.getElementById("recordDetailsContent").innerHTML=`<div class="detail-profile"><div class="detail-avatar">${escapeRecord(initials(name))}</div><div><h4>${escapeRecord(name)}</h4><p>${escapeRecord(r.id)} · ${escapeRecord(r.type)}</p></div></div><div class="record-detail-grid"><div class="record-detail-item"><div class="record-detail-label">Patient ID</div><div class="record-detail-value">${escapeRecord(r.patientId||"—")}</div></div><div class="record-detail-item"><div class="record-detail-label">Record Date</div><div class="record-detail-value">${escapeRecord(formatDate(r.date))}</div></div><div class="record-detail-item"><div class="record-detail-label">Record Type</div><div class="record-detail-value">${escapeRecord(r.type)}</div></div><div class="record-detail-item"><div class="record-detail-label">Tooth Number</div><div class="record-detail-value">${escapeRecord(r.tooth||"—")}</div></div><div class="record-detail-item record-detail-full"><div class="record-detail-label">Record Title</div><div class="record-detail-value">${escapeRecord(r.title)}</div></div><div class="record-detail-item record-detail-full"><div class="record-detail-label">Clinical Notes</div><div class="record-detail-value">${escapeRecord(r.description||"No notes added")}</div></div></div>${attachmentHtml}`;
+  document.getElementById("recordDetailsModal").classList.add("show");
+}
+function closeRecordDetails(){document.getElementById("recordDetailsModal")?.classList.remove("show");if(recordObjectUrl){URL.revokeObjectURL(recordObjectUrl);recordObjectUrl=null;}}
+async function deleteRecord(id){const r=getRecords().find(x=>x.id===id);if(!r)return;if(!confirm("Delete this record?"))return;try{await deleteRecordFile(id);}catch(e){}saveRecords(getRecords().filter(x=>x.id!==id));renderRecords();}
+function seedRecords(){
+  if(getRecords().length)return;
+  const ps=getPatients();if(!ps.length)return;
+  const today=todayISO();
+  saveRecords([
+    {id:"REC-0001",patientId:ps[0]?.id||"PT-0001",type:"X-Ray",title:"Pre-op X-Ray · Tooth 46",date:today,tooth:"46",description:"Pre-operative radiographic record for root canal treatment.",hasAttachment:false,fileName:"",fileType:"",fileSize:0,createdAt:new Date().toISOString()},
+    {id:"REC-0002",patientId:ps[1]?.id||"PT-0002",type:"Clinical Record",title:"Initial Consultation Notes",date:today,tooth:"",description:"Initial consultation and clinical findings.",hasAttachment:false,fileName:"",fileType:"",fileSize:0,createdAt:new Date().toISOString()},
+    {id:"REC-0003",patientId:ps[2]?.id||"PT-0003",type:"Document",title:"Treatment Consent",date:today,tooth:"36",description:"Signed treatment consent record.",hasAttachment:false,fileName:"",fileType:"",fileSize:0,createdAt:new Date().toISOString()}
+  ]);
+}
+
+/* Final navigation override: Dashboard → Patients → Appointments → Treatment → Records & X-Ray */
+function showPage(page){
+  ["dashboardPage","patientsPage","appointmentsPage","treatmentPage","recordsPage"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle("hidden",id!==page+"Page");});
+  if(page==="patients")renderPatients();
+  if(page==="appointments"){populateAppointmentPatients();renderAppointments();}
+  if(page==="treatment"){populateTreatmentPatients();renderTreatments();}
+  if(page==="records"){populateRecordPatients();renderRecords();}
+  document.getElementById("sidebar")?.classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});
+}
+function selectMenu(button){document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const label=button.textContent.trim();if(label.includes("Dashboard"))showPage("dashboard");else if(label.includes("Patients"))showPage("patients");else if(label.includes("Appointments"))showPage("appointments");else if(label.includes("Treatment"))showPage("treatment");else if(label.includes("Records"))showPage("records");else{showPage("dashboard");alert(label+" module will be added next.");}}
+function quickAction(type){if(type==="patient"){activateSidebar("Patients");showPage("patients");openPatientModal();return;}if(type==="appointment"){activateSidebar("Appointments");showPage("appointments");openAppointmentModal();return;}if(type==="treatment"){activateSidebar("Treatment");showPage("treatment");openTreatmentModal();return;}if(type==="xray"){activateSidebar("Records");showPage("records");openRecordModal();return;}}
+function mobileNavigation(button){document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const l=button.textContent.trim();if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}else if(l.includes("More")){activateSidebar("Records");showPage("records");}else if(l.includes("Records")){activateSidebar("Records");showPage("records");}}
+
+document.getElementById("recordModal")?.addEventListener("click",function(e){if(e.target===this)closeRecordModal();});
+document.getElementById("recordDetailsModal")?.addEventListener("click",function(e){if(e.target===this)closeRecordDetails();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeRecordModal();closeRecordDetails();}});
+
+
+
+/* =========================================================
+   BILLING MODULE JAVASCRIPT
+========================================================= */
+const BILLING_KEY="drMeghaBillingV1";
+let billingRecords=loadBilling();
+let billingObjectUrl=null;
+function loadBilling(){try{return JSON.parse(localStorage.getItem(BILLING_KEY)||"[]")||[];}catch(e){return[];}}
+function saveBillingRecords(){localStorage.setItem(BILLING_KEY,JSON.stringify(billingRecords));}
+function invoiceId(){let m=0;billingRecords.forEach(x=>{const q=String(x.id||"").match(/(\d+)$/);if(q)m=Math.max(m,+q[1]);});return "INV-"+String(m+1).padStart(4,"0");}
+function money(v){return "₹"+Number(v||0).toLocaleString("en-IN",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function billingPatientName(id){const p=getPatients().find(x=>String(x.id)===String(id));return p?p.name:"Unknown Patient";}
+function billingStatus(total,paid){total=Number(total)||0;paid=Number(paid)||0;if(paid>=total&&total>0)return"Paid";if(paid>0)return"Partial";return"Pending";}
+function populateBillingPatients(){const s=document.getElementById("billingPatient"),f=document.getElementById("billingPatientFilter");const ps=getPatients();if(s){const old=s.value;s.innerHTML='<option value="">Select patient</option>'+ps.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)} · ${escapeHtml(p.id)}</option>`).join("");if(old)s.value=old;}if(f){const old=f.value;f.innerHTML='<option value="All">All Patients</option>'+ps.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join("");if(old)f.value=old;}}
+function calculateInvoice(){const sub=Number(document.getElementById("billingSubtotal")?.value)||0,disc=Number(document.getElementById("billingDiscount")?.value)||0,paid=Number(document.getElementById("billingPaid")?.value)||0,total=Math.max(0,sub-disc),balance=Math.max(0,total-paid);const a=document.getElementById("invoiceSubtotalDisplay"),b=document.getElementById("invoiceDiscountDisplay"),c=document.getElementById("invoiceBalanceDisplay");if(a)a.textContent=money(sub);if(b)b.textContent=money(disc);if(c)c.textContent=money(balance);}
+function openBillingModal(id){populateBillingPatients();const form=document.getElementById("billingForm");form?.reset();document.getElementById("billingEditId").value="";document.getElementById("billingModalTitle").textContent="New Invoice";document.getElementById("billingDate").value=todayISO();document.getElementById("billingDiscount").value="0";document.getElementById("billingPaid").value="0";if(id){const b=billingRecords.find(x=>x.id===id);if(!b)return;document.getElementById("billingEditId").value=b.id;document.getElementById("billingModalTitle").textContent="Edit Invoice";document.getElementById("billingPatient").value=b.patientId;document.getElementById("billingDate").value=b.date;document.getElementById("billingTreatment").value=b.treatment;document.getElementById("billingSubtotal").value=b.subtotal;document.getElementById("billingDiscount").value=b.discount;document.getElementById("billingPaid").value=b.paid;document.getElementById("billingPaymentMethod").value=b.paymentMethod||"Cash";document.getElementById("billingNotes").value=b.notes||"";}calculateInvoice();document.getElementById("billingModal").classList.add("show");}
+function closeBillingModal(){document.getElementById("billingModal")?.classList.remove("show");}
+function saveBilling(e){e.preventDefault();const patientId=document.getElementById("billingPatient").value,sub=Number(document.getElementById("billingSubtotal").value)||0,disc=Number(document.getElementById("billingDiscount").value)||0,paid=Number(document.getElementById("billingPaid").value)||0,total=Math.max(0,sub-disc);if(!patientId||!document.getElementById("billingDate").value||!document.getElementById("billingTreatment").value.trim()){alert("Please fill in patient, invoice date and treatment/procedure.");return;}if(disc>sub){alert("Discount cannot be greater than subtotal.");return;}if(paid>total){alert("Amount paid cannot be greater than the invoice total.");return;}const edit=document.getElementById("billingEditId").value.trim();const d={id:edit||invoiceId(),patientId,date:document.getElementById("billingDate").value,treatment:document.getElementById("billingTreatment").value.trim(),subtotal:sub,discount:disc,total,paid,balance:Math.max(0,total-paid),paymentMethod:document.getElementById("billingPaymentMethod").value,notes:document.getElementById("billingNotes").value.trim(),status:billingStatus(total,paid),updatedAt:new Date().toISOString()};if(edit){const i=billingRecords.findIndex(x=>x.id===edit);if(i!==-1)billingRecords[i]={...billingRecords[i],...d};}else{d.createdAt=new Date().toISOString();billingRecords.push(d);}saveBillingRecords();closeBillingModal();renderBilling();alert(edit?"Invoice updated successfully.":"Invoice created successfully.");}
+function renderBilling(){const q=(document.getElementById("billingSearch")?.value||"").toLowerCase().trim(),status=document.getElementById("billingStatusFilter")?.value||"All",pid=document.getElementById("billingPatientFilter")?.value||"All";let rows=billingRecords.filter(b=>{const n=billingPatientName(b.patientId).toLowerCase();return(!q||[b.id,b.treatment,n,b.patientId].join(" ").toLowerCase().includes(q))&&(status==="All"||b.status===status)&&(pid==="All"||b.patientId===pid);}).sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(b.createdAt||"").localeCompare(String(a.createdAt||"")));const el=document.getElementById("billingList");if(!rows.length){el.innerHTML='<div class="billing-empty"><strong>No invoices found</strong>Create your first invoice with “+ New Invoice”.</div>';}else{el.innerHTML=rows.map(b=>{const n=billingPatientName(b.patientId),ini=initials(n);return `<div class="bill-row"><div class="bill-avatar">${escapeHtml(ini)}</div><div class="bill-main"><div class="bill-name">${escapeHtml(n)}</div><div class="bill-meta">${escapeHtml(b.id)} · ${escapeHtml(formatDate(b.date))} · ${escapeHtml(b.treatment)}</div></div><div class="bill-amounts"><div class="bill-money"><label>Total</label><strong>${money(b.total)}</strong></div><div class="bill-money"><label>Paid</label><strong>${money(b.paid)}</strong></div><div class="bill-money"><label>Due</label><strong>${money(b.balance)}</strong></div><span class="bill-status ${b.status.toLowerCase()}">${escapeHtml(b.status)}</span></div><div class="bill-actions"><button class="bill-action" onclick="viewBilling('${b.id}')">View</button><button class="bill-action" onclick="openBillingModal('${b.id}')">Edit</button><button class="bill-action" onclick="deleteBilling('${b.id}')">Delete</button></div></div>`;}).join("");}updateBillingSummary();}
+function updateBillingSummary(){const total=billingRecords.reduce((a,b)=>a+Number(b.total||0),0),paid=billingRecords.reduce((a,b)=>a+Number(b.paid||0),0),due=billingRecords.reduce((a,b)=>a+Number(b.balance||0),0);document.getElementById("billTotalInvoiced").textContent=money(total);document.getElementById("billCollected").textContent=money(paid);document.getElementById("billPending").textContent=money(due);document.getElementById("billInvoiceCount").textContent=billingRecords.length;}
+function viewBilling(id){const b=billingRecords.find(x=>x.id===id);if(!b)return;const n=billingPatientName(b.patientId);document.getElementById("billingDetailsContent").innerHTML=`<div class="bill-detail-head"><div><h4>${escapeHtml(b.id)}</h4><p>${escapeHtml(n)} · ${escapeHtml(b.patientId)}</p></div><span class="bill-status ${b.status.toLowerCase()}">${escapeHtml(b.status)}</span></div><div class="bill-detail-grid"><div class="bill-detail-item"><div class="bill-detail-label">Invoice Date</div><div class="bill-detail-value">${escapeHtml(formatDate(b.date))}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Payment Method</div><div class="bill-detail-value">${escapeHtml(b.paymentMethod||"—")}</div></div><div class="bill-detail-item full"><div class="bill-detail-label">Treatment / Procedure</div><div class="bill-detail-value">${escapeHtml(b.treatment)}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Subtotal</div><div class="bill-detail-value">${money(b.subtotal)}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Discount</div><div class="bill-detail-value">${money(b.discount)}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Total</div><div class="bill-detail-value">${money(b.total)}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Paid</div><div class="bill-detail-value">${money(b.paid)}</div></div><div class="bill-detail-item"><div class="bill-detail-label">Balance Due</div><div class="bill-detail-value">${money(b.balance)}</div></div><div class="bill-detail-item full"><div class="bill-detail-label">Notes</div><div class="bill-detail-value">${escapeHtml(b.notes||"No notes added")}</div></div></div>`;document.getElementById("billingDetailsModal").classList.add("show");}
+function closeBillingDetails(){document.getElementById("billingDetailsModal")?.classList.remove("show");}
+function deleteBilling(id){if(!confirm("Delete this invoice?"))return;billingRecords=billingRecords.filter(x=>x.id!==id);saveBillingRecords();renderBilling();}
+function seedBilling(){if(billingRecords.length)return;const ps=getPatients();if(!ps.length)return;const today=todayISO();billingRecords=[{id:"INV-0001",patientId:ps[0]?.id||"PT-0001",date:today,treatment:"Root Canal Treatment · Tooth 46",subtotal:8000,discount:500,total:7500,paid:4000,balance:3500,paymentMethod:"UPI",notes:"Advance payment received.",status:"Partial",createdAt:new Date().toISOString()},{id:"INV-0002",patientId:ps[1]?.id||"PT-0002",date:today,treatment:"Dental Consultation",subtotal:1000,discount:0,total:1000,paid:1000,balance:0,paymentMethod:"Cash",notes:"Paid in full.",status:"Paid",createdAt:new Date().toISOString()},{id:"INV-0003",patientId:ps[2]?.id||"PT-0003",date:today,treatment:"Re-RCT · Tooth 36",subtotal:9000,discount:0,total:9000,paid:0,balance:9000,paymentMethod:"UPI",notes:"Payment pending.",status:"Pending",createdAt:new Date().toISOString()}];saveBillingRecords();}
+
+
+/* Billing-aware navigation override */
+const _showPageBeforeBilling=showPage;
+showPage=function(page){if(page==="billing"){["dashboardPage","patientsPage","appointmentsPage","treatmentPage","recordsPage","billingPage"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle("hidden",id!=="billingPage");});populateBillingPatients();renderBilling();document.getElementById("sidebar")?.classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});return;} _showPageBeforeBilling(page);};
+const _selectMenuBeforeBilling=selectMenu;
+selectMenu=function(button){const label=button.textContent.trim();if(label.includes("Billing")){document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");showPage("billing");return;} _selectMenuBeforeBilling(button);};
+const _quickActionBeforeBilling=quickAction;
+quickAction=function(type){if(type==="billing"){activateSidebar("Billing");showPage("billing");openBillingModal();return;} _quickActionBeforeBilling(type);};
+const _mobileNavigationBeforeBilling=mobileNavigation;
+mobileNavigation=function(button){const l=button.textContent.trim();if(l.includes("Billing")){document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");activateSidebar("Billing");showPage("billing");return;} _mobileNavigationBeforeBilling(button);};
+
+document.getElementById("billingModal")?.addEventListener("click",function(e){if(e.target===this)closeBillingModal();});
+document.getElementById("billingDetailsModal")?.addEventListener("click",function(e){if(e.target===this)closeBillingDetails();});
+seedBilling();
+renderBilling();
+updateBillingSummary();
+seedRecords();
+renderRecords();
+updateRecordSummary();
+
+/* =========================================================
+   REPORTS MODULE
+========================================================= */
+function reportDateInRange(value,from,to){
+  if(!value)return true;
+  const d=String(value).slice(0,10);
+  return (!from||d>=from)&&(!to||d<=to);
+}
+function reportCountMap(items,keyFn){const m={};items.forEach(x=>{const k=keyFn(x)||"Unknown";m[k]=(m[k]||0)+1;});return m;}
+function reportBars(map,order){
+  const keys=order||Object.keys(map);const max=Math.max(1,...keys.map(k=>Number(map[k]||0)));
+  if(!keys.length)return '<div class="report-empty">No data for the selected period.</div>';
+  return keys.map(k=>`<div class="report-stat-row"><div class="report-stat-name">${escapeHtml(k)}</div><div class="report-bar"><div class="report-bar-fill" style="width:${(Number(map[k]||0)/max*100)}%"></div></div><div class="report-stat-value">${Number(map[k]||0)}</div></div>`).join('');
+}
+function renderReports(){
+  const from=document.getElementById("reportFrom")?.value||"",to=document.getElementById("reportTo")?.value||"";
+  const patients=getPatients();
+  const appointments=getAppointments();
+  const treatments=getTreatments();
+  const records=getRecords();
+  const bills=Array.isArray(billingRecords)?billingRecords:[];
+  const ap=appointments.filter(a=>reportDateInRange(a.date,from,to));
+  const tr=treatments.filter(t=>reportDateInRange(t.startDate||t.createdAt,from,to));
+  const rec=records.filter(r=>reportDateInRange(r.date||r.createdAt,from,to));
+  const bi=bills.filter(b=>reportDateInRange(b.date||b.createdAt,from,to));
+  const completed=ap.filter(a=>String(a.status).toLowerCase()==="completed").length;
+  const activeTr=treatments.filter(t=>["In Progress","Planned"].includes(t.status)).length;
+  const xrays=rec.filter(r=>String(r.type).toLowerCase()==="x-ray").length;
+  document.getElementById("reportPatients").textContent=patients.length;
+  document.getElementById("reportAppointments").textContent=ap.length;
+  document.getElementById("reportCompletedAppointments").textContent=completed+" completed in selected period";
+  document.getElementById("reportTreatments").textContent=tr.length;
+  document.getElementById("reportActiveTreatments").textContent=activeTr+" currently active / planned";
+  document.getElementById("reportRecords").textContent=rec.length;
+  document.getElementById("reportXrays").textContent=xrays+" X-rays in selected period";
+  const invoiced=bi.reduce((s,b)=>s+Number(b.total||0),0),collected=bi.reduce((s,b)=>s+Number(b.paid||0),0),pending=bi.reduce((s,b)=>s+Number(b.balance||0),0);
+  document.getElementById("reportInvoiced").textContent=money(invoiced);
+  document.getElementById("reportCollected").textContent=money(collected);
+  document.getElementById("reportPending").textContent=money(pending);
+  document.getElementById("reportInvoices").textContent=bi.length;
+  const apMap=reportCountMap(ap,a=>a.status||"Unknown");
+  document.getElementById("reportAppointmentStatus").innerHTML=reportBars(apMap,["Scheduled","In-Chair","Completed","Cancelled"]);
+  const trMap=reportCountMap(tr,t=>t.status||"Planned");
+  document.getElementById("reportTreatmentStatus").innerHTML=reportBars(trMap,["Planned","In Progress","Completed","On Hold"]);
+  const recMap=reportCountMap(rec,r=>r.type||"Other");
+  document.getElementById("reportRecordTypes").innerHTML=reportBars(recMap,["X-Ray","Clinical Record","Document","Prescription","Other"]);
+  const activity={};
+  ap.forEach(a=>{activity[a.patientId]=(activity[a.patientId]||0)+1;});
+  tr.forEach(t=>{activity[t.patientId]=(activity[t.patientId]||0)+1;});
+  const top=Object.entries(activity).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  document.getElementById("reportPatientActivity").innerHTML=top.length?`<table class="report-table"><thead><tr><th>Patient</th><th>Patient ID</th><th>Activities</th></tr></thead><tbody>${top.map(([pid,count])=>{const p=patients.find(x=>String(x.id)===String(pid));return `<tr><td>${escapeHtml(p?.name||"Unknown Patient")}</td><td>${escapeHtml(pid)}</td><td><strong>${count}</strong></td></tr>`}).join('')}</tbody></table>`:'<div class="report-empty">No patient activity found for the selected period.</div>';
+  const label=from&&to?`Report period: ${formatDate(from)} — ${formatDate(to)}`:from?`Report period: From ${formatDate(from)}`:to?`Report period: Until ${formatDate(to)}`:"All practice data";
+  document.getElementById("reportPeriodLabel").textContent=label;
+}
+function setReportPeriod(mode){
+  const from=document.getElementById("reportFrom"),to=document.getElementById("reportTo");
+  if(mode==="all"){from.value="";to.value="";}else{const d=new Date();const first=new Date(d.getFullYear(),d.getMonth(),1);from.value=first.toISOString().slice(0,10);to.value=todayISO();}
+  renderReports();
+}
+function printReports(){window.print();}
+function exportReportsCSV(){
+  const from=document.getElementById("reportFrom")?.value||"",to=document.getElementById("reportTo")?.value||"";
+  const ap=getAppointments().filter(a=>reportDateInRange(a.date,from,to));
+  const tr=getTreatments().filter(t=>reportDateInRange(t.startDate||t.createdAt,from,to));
+  const rec=getRecords().filter(r=>reportDateInRange(r.date||r.createdAt,from,to));
+  const bi=(Array.isArray(billingRecords)?billingRecords:[]).filter(b=>reportDateInRange(b.date||b.createdAt,from,to));
+  const rows=[['Section','Item','Value'],['Patients','Total',getPatients().length],['Appointments','Total',ap.length],['Appointments','Completed',ap.filter(a=>a.status==='Completed').length],['Treatments','Total',tr.length],['Records','Total',rec.length],['Records','X-Ray',rec.filter(r=>r.type==='X-Ray').length],['Billing','Total Invoiced',bi.reduce((s,b)=>s+Number(b.total||0),0)],['Billing','Collected',bi.reduce((s,b)=>s+Number(b.paid||0),0)],['Billing','Pending',bi.reduce((s,b)=>s+Number(b.balance||0),0)],['Billing','Invoices',bi.length]];
+  const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='DrMegha_Practice_Report.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),500);
+}
+
+
+/* =========================================================
+   FINAL NAVIGATION OVERRIDE — ALL CURRENT MODULES
+========================================================= */
+function showPage(page){
+  const pages=["dashboard","patients","appointments","treatment","records","billing","reports"];
+  pages.forEach(name=>{const e=document.getElementById(name+"Page");if(e)e.classList.toggle("hidden",page!==name);});
+  if(page==="patients")renderPatients();
+  if(page==="appointments"){populateAppointmentPatients();renderAppointments();}
+  if(page==="treatment"){populateTreatmentPatients();renderTreatments();}
+  if(page==="records"){populateRecordPatients();renderRecords();}
+  if(page==="billing"){populateBillingPatients();renderBilling();}
+  if(page==="reports"){renderReports();}
+  document.getElementById("sidebar")?.classList.remove("open");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function selectMenu(button){
+  document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));
+  button.classList.add("active");
+  const label=button.textContent.trim();
+  if(label.includes("Dashboard"))showPage("dashboard");
+  else if(label.includes("Patients"))showPage("patients");
+  else if(label.includes("Appointments"))showPage("appointments");
+  else if(label.includes("Treatment"))showPage("treatment");
+  else if(label.includes("Records"))showPage("records");
+  else if(label.includes("Billing"))showPage("billing");
+  else if(label.includes("Reports"))showPage("reports");
+  else showPage("dashboard");
+}
+function mobileNavigation(button){
+  document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));
+  button.classList.add("active");
+  const l=button.textContent.trim();
+  if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}
+  else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}
+  else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}
+  else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}
+  else if(l.includes("Billing")){activateSidebar("Billing");showPage("billing");}
+  else if(l.includes("More")){activateSidebar("Reports");showPage("reports");}
+}
+
+
+/* =========================================================
+   SETTINGS MODULE — FINAL NAVIGATION OVERRIDE
+========================================================= */
+const SETTINGS_KEY="drMeghaClinicSettingsV1";
+function getClinicSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||"{}")||{};}catch(e){return {};}}
+function loadClinicSettings(){
+  const s=getClinicSettings();
+  const map={setClinicName:s.clinicName,setDoctorName:s.doctorName,setSpeciality:s.speciality,setClinicPhone:s.phone,setClinicEmail:s.email,setRegistration:s.registration,setClinicAddress:s.address};
+  Object.entries(map).forEach(([id,v])=>{const e=document.getElementById(id);if(e&&v!==undefined)e.value=v;});
+  const pref=s.preferences||{};
+  const compact=document.getElementById("setCompact"),demo=document.getElementById("setDemo"),confirmDelete=document.getElementById("setConfirmDelete"),currency=document.getElementById("setCurrency");
+  if(compact)compact.checked=!!pref.compact;
+  if(demo)demo.checked=pref.showDemo!==false;
+  if(confirmDelete)confirmDelete.checked=pref.confirmDelete!==false;
+  if(currency)currency.value=pref.currency||"INR";
+}
+function saveClinicSettings(){
+  const old=getClinicSettings();
+  const data={...old,clinicName:document.getElementById("setClinicName")?.value.trim()||"",doctorName:document.getElementById("setDoctorName")?.value.trim()||"",speciality:document.getElementById("setSpeciality")?.value.trim()||"",phone:document.getElementById("setClinicPhone")?.value.trim()||"",email:document.getElementById("setClinicEmail")?.value.trim()||"",registration:document.getElementById("setRegistration")?.value.trim()||"",address:document.getElementById("setClinicAddress")?.value.trim()||"",preferences:{...(old.preferences||{}),compact:document.getElementById("setCompact")?.checked||false,showDemo:document.getElementById("setDemo")?.checked!==false,confirmDelete:document.getElementById("setConfirmDelete")?.checked!==false,currency:document.getElementById("setCurrency")?.value||"INR"}};
+  localStorage.setItem(SETTINGS_KEY,JSON.stringify(data));
+  alert("Settings saved successfully.");
+}
+function savePreferenceSettings(){
+  const s=getClinicSettings();s.preferences={...(s.preferences||{}),compact:document.getElementById("setCompact")?.checked||false,showDemo:document.getElementById("setDemo")?.checked!==false,confirmDelete:document.getElementById("setConfirmDelete")?.checked!==false,currency:document.getElementById("setCurrency")?.value||"INR"};localStorage.setItem(SETTINGS_KEY,JSON.stringify(s));
+}
+function exportClinicData(){
+  const keys=["drMeghaPatients","drMeghaAppointments","drMeghaAppointmentsV1","drMeghaTreatments","drMeghaTreatmentsV1","drMeghaRecords","drMeghaBilling","drMeghaBillingV1",SETTINGS_KEY];
+  const data={exportedAt:new Date().toISOString(),application:"Dental Clinic Management",storage:{}};keys.forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data.storage[k]=v;});
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="DrMegha_Clinic_Backup_"+todayISO()+".json";a.click();setTimeout(()=>URL.revokeObjectURL(url),500);
+}
+function importClinicData(event){
+  const file=event.target.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result);if(!data.storage||typeof data.storage!=="object")throw new Error("Invalid backup");if(!confirm("Import this backup? Existing matching local data will be replaced."))return;Object.entries(data.storage).forEach(([k,v])=>localStorage.setItem(k,String(v)));alert("Backup imported successfully. Reloading the application.");location.reload();}catch(e){alert("Could not import this backup. Please select a valid clinic backup JSON file.");}};reader.readAsText(file);event.target.value="";
+}
+function clearClinicData(){
+  if(!confirm("Clear all clinic data stored in this browser? This cannot be undone unless you have an exported backup."))return;
+  ["drMeghaPatients","drMeghaAppointments","drMeghaAppointmentsV1","drMeghaTreatments","drMeghaTreatmentsV1","drMeghaRecords","drMeghaBilling","drMeghaBillingV1"].forEach(k=>localStorage.removeItem(k));
+  alert("Clinic data cleared. Reloading the application.");location.reload();
+}
+function showPage(page){
+  const pages=["dashboard","patients","appointments","treatment","records","billing","reports","settings"];
+  pages.forEach(name=>{const e=document.getElementById(name+"Page");if(e)e.classList.toggle("hidden",page!==name);});
+  if(page==="patients")renderPatients();
+  if(page==="appointments"){populateAppointmentPatients();renderAppointments();}
+  if(page==="treatment"){populateTreatmentPatients();renderTreatments();}
+  if(page==="records"){populateRecordPatients();renderRecords();}
+  if(page==="billing"){populateBillingPatients();renderBilling();}
+  if(page==="reports"){renderReports();}
+  if(page==="settings"){loadClinicSettings();}
+  document.getElementById("sidebar")?.classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});
+}
+function selectMenu(button){
+  document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const label=button.textContent.trim();
+  if(label.includes("Dashboard"))showPage("dashboard");else if(label.includes("Patients"))showPage("patients");else if(label.includes("Appointments"))showPage("appointments");else if(label.includes("Treatment"))showPage("treatment");else if(label.includes("Records"))showPage("records");else if(label.includes("Billing"))showPage("billing");else if(label.includes("Reports"))showPage("reports");else if(label.includes("Settings"))showPage("settings");else showPage("dashboard");
+}
+function mobileNavigation(button){
+  document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));button.classList.add("active");const l=button.textContent.trim();
+  if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}else if(l.includes("Billing")){activateSidebar("Billing");showPage("billing");}else if(l.includes("More")){activateSidebar("Settings");showPage("settings");}
+}
+
+</script>
+
+</body>
+</html>
