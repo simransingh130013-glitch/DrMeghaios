@@ -2441,6 +2441,9 @@ body.auth-pending .app{display:none !important;}
   color:#8FDDF0;
   cursor:pointer;
 }
+.auth-remember{display:flex;align-items:center;gap:9px;margin:2px 0 3px;color:#8FB7C9;font-size:9px;line-height:1.4;}
+.auth-remember input{width:15px;height:15px;accent-color:#00BFFF;cursor:pointer;}
+.auth-remember strong{color:#DDF6FF;font-weight:700;}
 .auth-submit{
   width:100%;
   height:47px;
@@ -2523,6 +2526,7 @@ body.auth-pending .app{display:none !important;}
           class="auth-input"
           type="email"
           autocomplete="username"
+          inputmode="email"
           placeholder="Enter your registered email"
           required
         >
@@ -2542,6 +2546,11 @@ body.auth-pending .app{display:none !important;}
           <button type="button" class="auth-eye" id="authEye" aria-label="Show password">👁</button>
         </div>
       </div>
+
+      <label class="auth-remember">
+        <input id="rememberDevice" type="checkbox" checked>
+        <span><strong>Keep me signed in</strong> on this device</span>
+      </label>
 
       <button class="auth-submit" id="authSubmit" type="submit">
         SIGN IN
@@ -4514,7 +4523,8 @@ const SUPABASE_URL = "https://qxccztgwuhecwwtqiahz.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_5JPwPdxVUYDdz-1tytjfxA_RKagOuG6";
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
+  SUPABASE_PUBLISHABLE_KEY,
+  { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false } }
 );
 
 const authScreen = document.getElementById("authScreen");
@@ -4524,6 +4534,14 @@ const authPassword = document.getElementById("authPassword");
 const authSubmit = document.getElementById("authSubmit");
 const authMessage = document.getElementById("authMessage");
 const authEye = document.getElementById("authEye");
+const rememberDevice = document.getElementById("rememberDevice");
+
+// Supabase keeps the authenticated session in browser storage by default.
+// We only remember the email locally; the password is never stored by this app.
+try{
+  const savedEmail = localStorage.getItem("drMeghaLoginEmail");
+  if(savedEmail && authEmail) authEmail.value = savedEmail;
+}catch(e){}
 
 function setAuthMessage(message, success=false){
   if(!authMessage) return;
@@ -4571,6 +4589,10 @@ authForm?.addEventListener("submit", async function(event){
 
   const email = authEmail.value.trim();
   const password = authPassword.value;
+
+  if(rememberDevice?.checked){
+    try{ localStorage.setItem("drMeghaLoginEmail", email); }catch(e){}
+  }
 
   if(!email || !password){
     setAuthMessage("Please enter your email and password.");
