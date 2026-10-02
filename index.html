@@ -2351,11 +2351,210 @@ table td{border-bottom-color:rgba(0,191,255,.09) !important;color:#D7F1FA !impor
 }
 </style>
 
+<style id="supabase-auth-styles">
+/* =========================================================
+   SUPABASE AUTH LOGIN
+========================================================= */
+body.auth-pending .app{display:none !important;}
+#authScreen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 18% 20%,rgba(0,191,255,.13),transparent 30%),
+    radial-gradient(circle at 82% 80%,rgba(0,140,140,.14),transparent 32%),
+    linear-gradient(135deg,#00111f,#001F3F 55%,#002941);
+}
+#authScreen.auth-hidden{display:none;}
+.auth-card{
+  width:min(430px,100%);
+  padding:34px;
+  border-radius:28px;
+  background:linear-gradient(145deg,rgba(6,43,70,.96),rgba(2,27,48,.98));
+  border:1px solid rgba(0,191,255,.25);
+  box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 45px rgba(0,191,255,.08);
+  backdrop-filter:blur(18px);
+}
+.auth-logo{
+  width:64px;height:64px;
+  margin:0 auto 18px;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#008C8C,#00BFFF);
+  color:#fff;
+  font-size:27px;
+  box-shadow:0 0 28px rgba(0,191,255,.25);
+}
+.auth-card h1{
+  text-align:center;
+  color:#fff;
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+.auth-card .auth-subtitle{
+  text-align:center;
+  color:#8FB7C9;
+  font-size:10px;
+  line-height:1.6;
+  margin:8px 0 25px;
+}
+.auth-form-group{margin-bottom:14px;}
+.auth-form-group label{
+  display:block;
+  margin:0 0 7px 3px;
+  color:#A9D6E5;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+.auth-input{
+  width:100%;
+  height:47px;
+  border-radius:13px;
+  border:1px solid rgba(0,191,255,.20);
+  background:rgba(0,20,40,.72);
+  color:#F4FCFF;
+  padding:0 14px;
+  outline:none;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+}
+.auth-input::placeholder{color:#648D9F;}
+.auth-input:focus{
+  border-color:#00BFFF;
+  box-shadow:0 0 0 3px rgba(0,191,255,.08),0 0 18px rgba(0,191,255,.08);
+}
+.auth-password-wrap{position:relative;}
+.auth-password-wrap .auth-input{padding-right:45px;}
+.auth-eye{
+  position:absolute;
+  right:8px;
+  top:7px;
+  width:34px;height:33px;
+  border:0;border-radius:9px;
+  background:rgba(0,191,255,.08);
+  color:#8FDDF0;
+  cursor:pointer;
+}
+.auth-submit{
+  width:100%;
+  height:47px;
+  margin-top:7px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(135deg,#008C8C,#00BFFF);
+  color:#fff;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,191,255,.20);
+}
+.auth-submit:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.auth-submit:disabled{opacity:.65;cursor:wait;transform:none;}
+.auth-message{
+  min-height:18px;
+  margin-top:13px;
+  text-align:center;
+  color:#FFB4B4;
+  font-size:9px;
+  line-height:1.5;
+}
+.auth-footer{
+  margin-top:20px;
+  padding-top:15px;
+  border-top:1px solid rgba(0,191,255,.12);
+  text-align:center;
+  color:#668FA1;
+  font-size:8px;
+}
+.auth-clinic-name{
+  color:#A9D6E5;
+  font-weight:700;
+}
+.auth-logout{
+  width:calc(100% - 10px);
+  margin:18px 5px 0;
+  border:1px solid rgba(255,110,110,.20);
+  background:rgba(255,80,80,.06);
+  color:#FFB4B4;
+  border-radius:12px;
+  padding:10px 12px;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.auth-logout:hover{background:rgba(255,80,80,.12);color:#fff;}
+@media(max-width:500px){
+  #authScreen{padding:16px;}
+  .auth-card{padding:27px 20px;border-radius:23px;}
+}
+</style>
 </head>
 
 
-<body>
+<body class="auth-pending">
 
+
+
+<!-- =====================================================
+     SUPABASE LOGIN SCREEN
+===================================================== -->
+<section id="authScreen">
+  <div class="auth-card">
+    <div class="auth-logo">🦷</div>
+    <h1>Dr. Megha Dental</h1>
+    <p class="auth-subtitle">
+      Secure clinic access<br>
+      Sign in to open the Dental Clinic Management Dashboard.
+    </p>
+
+    <form id="authForm">
+      <div class="auth-form-group">
+        <label for="authEmail">EMAIL</label>
+        <input
+          id="authEmail"
+          class="auth-input"
+          type="email"
+          autocomplete="username"
+          placeholder="Enter your registered email"
+          required
+        >
+      </div>
+
+      <div class="auth-form-group">
+        <label for="authPassword">PASSWORD</label>
+        <div class="auth-password-wrap">
+          <input
+            id="authPassword"
+            class="auth-input"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required
+          >
+          <button type="button" class="auth-eye" id="authEye" aria-label="Show password">👁</button>
+        </div>
+      </div>
+
+      <button class="auth-submit" id="authSubmit" type="submit">
+        SIGN IN
+      </button>
+
+      <div class="auth-message" id="authMessage" role="alert"></div>
+    </form>
+
+    <div class="auth-footer">
+      Protected by <span class="auth-clinic-name">Supabase Authentication</span>
+    </div>
+  </div>
+</section>
 
 <div class="app">
 
@@ -2509,6 +2708,14 @@ table td{border-bottom-color:rgba(0,191,255,.09) !important;color:#D7F1FA !impor
 
         Settings
 
+    </button>
+
+    <button
+        class="auth-logout"
+        type="button"
+        onclick="signOutClinic()"
+    >
+        ↪ Sign Out
     </button>
 
 
@@ -3339,9 +3546,9 @@ table td{border-bottom-color:rgba(0,191,255,.09) !important;color:#D7F1FA !impor
       <h3>🔐 Privacy & Storage</h3>
       <p>Simple information about how this offline version works.</p>
       <div class="settings-row"><div><strong>Storage mode</strong><span>Local browser storage on this computer.</span></div><span class="settings-status">LOCAL</span></div>
-      <div class="settings-row"><div><strong>Cloud sync</strong><span>No cloud/database connection is configured in this version.</span></div><span style="font-size:9px;color:#7d879b;font-weight:700">OFF</span></div>
-      <div class="settings-row"><div><strong>Login / OTP</strong><span>This application opens directly without login or OTP.</span></div><span class="settings-status">OFF</span></div>
-      <div class="settings-note">For real clinic deployment, patient data should eventually be moved to a secure backend with authentication, access controls, encrypted storage and proper backups.</div>
+      <div class="settings-row"><div><strong>Cloud sync</strong><span>Clinic records are still stored locally in this version; cloud database sync is not yet connected.</span></div><span style="font-size:9px;color:#7d879b;font-weight:700">OFF</span></div>
+      <div class="settings-row"><div><strong>Login / Authentication</strong><span>Supabase email/password authentication protects access to the application.</span></div><span class="settings-status">ON</span></div>
+      <div class="settings-note">Authentication is enabled. Patient data is still stored in this browser until the database/cloud-sync stage is connected.</div>
     </section>
 
     <section class="settings-card full">
@@ -3721,6 +3928,7 @@ table td{border-bottom-color:rgba(0,191,255,.09) !important;color:#D7F1FA !impor
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 function toggleMenu(){document.getElementById("sidebar").classList.toggle("open");}
 
@@ -4294,6 +4502,127 @@ function mobileNavigation(button){
   if(l.includes("Home")){activateSidebar("Dashboard");showPage("dashboard");}else if(l.includes("Patients")){activateSidebar("Patients");showPage("patients");}else if(l.includes("Calendar")){activateSidebar("Appointments");showPage("appointments");}else if(l.includes("Treatment")){activateSidebar("Treatment");showPage("treatment");}else if(l.includes("Billing")){activateSidebar("Billing");showPage("billing");}else if(l.includes("More")){activateSidebar("Settings");showPage("settings");}
 }
 
+</script>
+
+
+<script>
+/* =========================================================
+   SUPABASE AUTHENTICATION GATE
+   Uses the browser-safe publishable key only.
+========================================================= */
+const SUPABASE_URL = "https://qxccztgwuhecwwtqiahz.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_5JPwPdxVUYDdz-1tytjfxA_RKagOuG6";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const authScreen = document.getElementById("authScreen");
+const authForm = document.getElementById("authForm");
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+const authSubmit = document.getElementById("authSubmit");
+const authMessage = document.getElementById("authMessage");
+const authEye = document.getElementById("authEye");
+
+function setAuthMessage(message, success=false){
+  if(!authMessage) return;
+  authMessage.textContent = message || "";
+  authMessage.style.color = success ? "#7DE7C2" : "#FFB4B4";
+}
+
+function showAuthenticatedApp(session){
+  document.body.classList.add("auth-ready");
+  document.body.classList.remove("auth-pending");
+  authScreen?.classList.add("auth-hidden");
+
+  const email = session?.user?.email || "";
+  const role = document.querySelector(".profile-role");
+  if(role && email) role.textContent = "Signed in";
+  const profileName = document.querySelector(".profile-name");
+  if(profileName) profileName.textContent = "Dr. Megha";
+}
+
+function showLoginScreen(){
+  document.body.classList.remove("auth-ready");
+  document.body.classList.add("auth-pending");
+  authScreen?.classList.remove("auth-hidden");
+  setTimeout(()=>authEmail?.focus(),80);
+}
+
+async function checkClinicSession(){
+  try{
+    const {data:{session},error} = await supabaseClient.auth.getSession();
+    if(error) throw error;
+    if(session){
+      showAuthenticatedApp(session);
+    }else{
+      showLoginScreen();
+    }
+  }catch(error){
+    console.error("Supabase session error:",error);
+    showLoginScreen();
+    setAuthMessage("Unable to check login. Please refresh and try again.");
+  }
+}
+
+authForm?.addEventListener("submit", async function(event){
+  event.preventDefault();
+
+  const email = authEmail.value.trim();
+  const password = authPassword.value;
+
+  if(!email || !password){
+    setAuthMessage("Please enter your email and password.");
+    return;
+  }
+
+  authSubmit.disabled = true;
+  authSubmit.textContent = "SIGNING IN...";
+  setAuthMessage("");
+
+  try{
+    const {data,error} = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if(error) throw error;
+
+    setAuthMessage("Login successful.",true);
+    showAuthenticatedApp(data.session);
+  }catch(error){
+    console.error("Supabase login error:",error);
+    setAuthMessage(error?.message || "Login failed. Please check your email and password.");
+  }finally{
+    authSubmit.disabled = false;
+    authSubmit.textContent = "SIGN IN";
+  }
+});
+
+authEye?.addEventListener("click",function(){
+  const isPassword = authPassword.type === "password";
+  authPassword.type = isPassword ? "text" : "password";
+  authEye.textContent = isPassword ? "🙈" : "👁";
+  authEye.setAttribute("aria-label",isPassword ? "Hide password" : "Show password");
+});
+
+async function signOutClinic(){
+  try{
+    const {error} = await supabaseClient.auth.signOut();
+    if(error) throw error;
+  }catch(error){
+    console.error("Supabase logout error:",error);
+    alert("Could not sign out. Please try again.");
+  }
+}
+
+supabaseClient.auth.onAuthStateChange((_event,session)=>{
+  if(session) showAuthenticatedApp(session);
+  else showLoginScreen();
+});
+
+checkClinicSession();
 </script>
 
 </body>
